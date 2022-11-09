@@ -7,6 +7,12 @@ class AppStrings {
   static const String body2 = 'On Boarding body 2';
   static const String body3 = 'On Boarding body 3';
   static const String skip =  'SKIP';
+  static const String login =  'Login';
+  static const String loginTitle =  'Login to browse hot offers';
+  static const String email =  'email address';
+  static const String password =  'password';
+  static const String haveNotAccount =  'Don\'t Have Account ? ';
+  static const String registerHere =  'Register here';
 
 
 }

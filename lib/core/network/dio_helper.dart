@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app_with_clean_architecture/core/error/exception.dart';
+import 'package:shop_app_with_clean_architecture/core/network/end-points.dart';
 import 'package:shop_app_with_clean_architecture/core/utils/error_message_model.dart';
 
 abstract class DioHelper {
@@ -31,7 +32,7 @@ abstract class DioHelper {
 class DioHelperImpl implements DioHelper {
   final Dio dio = Dio(
     BaseOptions(
-     // baseUrl: '$baseApiUrl$version',
+      baseUrl: '$baseApiUrl$version',
       receiveDataWhenStatusError: true,
       connectTimeout: 5000,
     ),

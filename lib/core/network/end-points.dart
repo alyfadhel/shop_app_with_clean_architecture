@@ -1,8 +1,8 @@
 
-const String baseApiUrl = 'http://api.mahmoudtaha.com';
+const String baseApiUrl = 'https://student.valuxapps.com';
 const String version = '/api';
-const String loginEndPoint = '/auth/login';
-const String registerEndPoint = '/auth/register';
-const String hotelsEndPoint = '/hotels';
+const String loginEndPoint = '/login';
+const String registerEndPoint = '/register';
+
 
  String? token = '';

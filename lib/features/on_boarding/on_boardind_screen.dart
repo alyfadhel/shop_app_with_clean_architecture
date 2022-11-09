@@ -50,64 +50,69 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(AppPadding.p20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(
-                  top: AppSize.s30,
-                ),
-                child: PageView.builder(
-                  onPageChanged: (int index) {
-                    if (index == boarding.length - 1) {
-                      setState(() {
-                        isLast = true;
-                      });
-                    } else {
-                      setState(() {
-                        isLast = false;
-                      });
-                    }
-                  },
-                  itemBuilder: (context, index) =>
-                      BuildOnBoardingScreen(boarding[index]),
-                  itemCount: boarding.length,
-                  controller: boardController,
-                ),
-              ),
-            ),
-            Row(
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: 700.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SmoothPageIndicator(
-                  controller: boardController,
-                  count: boarding.length,
-                  effect: const ExpandingDotsEffect(
-                    dotHeight: 10.0,
-                    dotWidth: 10.0,
-                    dotColor: ColorManager.grey,
-                    activeDotColor: ColorManager.mGreen,
-                    expansionFactor: 1.1,
-                    spacing: 4,
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.only(
+                      top: AppSize.s30,
+                    ),
+                    child: PageView.builder(
+                      onPageChanged: (int index) {
+                        if (index == boarding.length - 1) {
+                          setState(() {
+                            isLast = true;
+                          });
+                        } else {
+                          setState(() {
+                            isLast = false;
+                          });
+                        }
+                      },
+                      itemBuilder: (context, index) =>
+                          BuildOnBoardingScreen(boarding[index]),
+                      itemCount: boarding.length,
+                      controller: boardController,
+                    ),
                   ),
                 ),
-                const Spacer(),
-                FloatingActionButton(
-                  onPressed: () {
-                    if(isLast){
-                      submit(context);
-                    }else{
-                      boardController.nextPage(
-                        duration: const Duration(milliseconds: 750),
-                        curve: Curves.fastLinearToSlowEaseIn,
-                      );
-                    }
-                  },
-                  child: const Icon(Icons.arrow_forward_ios),
-                ),
+                Row(
+                  children: [
+                    SmoothPageIndicator(
+                      controller: boardController,
+                      count: boarding.length,
+                      effect: const ExpandingDotsEffect(
+                        dotHeight: 10.0,
+                        dotWidth: 10.0,
+                        dotColor: ColorManager.grey,
+                        activeDotColor: ColorManager.mGreen,
+                        expansionFactor: 1.1,
+                        spacing: 4,
+                      ),
+                    ),
+                    const Spacer(),
+                    FloatingActionButton(
+                      onPressed: () {
+                        if(isLast){
+                          submit(context);
+                        }else{
+                          boardController.nextPage(
+                            duration: const Duration(milliseconds: 750),
+                            curve: Curves.fastLinearToSlowEaseIn,
+                          );
+                        }
+                      },
+                      child: const Icon(Icons.arrow_forward_ios),
+                    ),
+                  ],
+                )
               ],
-            )
-          ],
+            ),
+          ),
         ),
       ),
     );

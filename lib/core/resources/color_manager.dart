@@ -4,6 +4,9 @@ class ColorManager {
   // Scaffold
   static const Color sWhite = Color(0xFFFFFFFF);
   static const Color sBlack = Color(0xFF1A1A1A);
+  static const Color green = Color(0xFF6aa84f);
+  static const Color amber = Color(0xFFf1c232);
+  static const Color red = Color(0xFFcc0000);
 
   // Buttons
   static const Color bGreen = Color(0xFF4EBE9F);
