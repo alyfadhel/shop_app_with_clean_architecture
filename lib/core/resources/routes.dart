@@ -1,7 +1,7 @@
 // import 'package:flutter/cupertino.dart';
 // import '../../features/get_hotels/presentation/pages/screens/view_all_hotels_page.dart';
 // import '../../features/profile/presentation/pages/profile_test_page.dart';
-// import '../../features/get_hotels/presentation/pages/layout/home_layout.dart';
+// import '../../features/get_hotels/presentation/pages/layout/login.dart';
 // import '../../features/login/presentation/pages/login_page.dart';
 // import '../../features/login/presentation/pages/onboarding/view/onboarding_page.dart';
 // import '../../features/login/presentation/pages/welcome_onboarding_page.dart';

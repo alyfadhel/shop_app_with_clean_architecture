@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/theme_manager.dart';
+import 'package:shop_app_with_clean_architecture/core/service/service_locator.dart';
 import 'package:shop_app_with_clean_architecture/features/on_boarding/on_boardind_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await ServiceLocator().init();
+  bool? onBoarding = sl<SharedPreferences>().getBool('onBoarding');
+  print(onBoarding);
   runApp(const MyApp());
 }
 

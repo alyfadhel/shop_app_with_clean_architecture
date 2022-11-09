@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app_with_clean_architecture/core/resources/assets_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/color_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/strings_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/values_manager.dart';
-import 'package:shop_app_with_clean_architecture/features/layout/home_layout.dart';
+import 'package:shop_app_with_clean_architecture/core/service/service_locator.dart';
+import 'package:shop_app_with_clean_architecture/features/login/presentation/screens/login.dart';
 import 'package:shop_app_with_clean_architecture/features/on_boarding/on_boarding_model.dart';
 import 'package:shop_app_with_clean_architecture/features/on_boarding/widget/build_on_boarding.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 var boardController = PageController();
 bool isLast = false;
+
+void submit(context)
+{
+  sl<SharedPreferences>().setBool('onBoarding', true).then((value)
+  {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+    );
+  });
+}
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -26,12 +40,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         actions: [
           TextButton(
               onPressed: (){
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
-                  ),
-                );
+                submit(context);
               },
               child: const Text(
                   AppStrings.skip,
@@ -86,12 +95,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 FloatingActionButton(
                   onPressed: () {
                     if(isLast){
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomeScreen(),
-                        ),
-                      );
+                      submit(context);
                     }else{
                       boardController.nextPage(
                         duration: const Duration(milliseconds: 750),
