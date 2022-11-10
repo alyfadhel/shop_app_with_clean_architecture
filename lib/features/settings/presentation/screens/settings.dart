@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class HomeLayout extends StatelessWidget {
-  const HomeLayout({Key? key}) : super(key: key);
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Text(
-          'Home Screen',
+          'Settings Screen',
           style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),

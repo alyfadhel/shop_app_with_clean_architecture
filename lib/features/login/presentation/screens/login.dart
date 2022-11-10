@@ -2,6 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app_with_clean_architecture/core/layout/home_layout.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/color_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/strings_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/values_manager.dart';
@@ -10,7 +11,6 @@ import 'package:shop_app_with_clean_architecture/core/widgets/my_form_field.dart
 import 'package:shop_app_with_clean_architecture/core/widgets/my_button.dart';
 import 'package:shop_app_with_clean_architecture/core/widgets/my_textButton.dart';
 import 'package:shop_app_with_clean_architecture/core/widgets/toast_state.dart';
-import 'package:shop_app_with_clean_architecture/features/home/presentation/screens/layout/home_layout.dart';
 import 'package:shop_app_with_clean_architecture/features/login/presentation/controller/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/login/presentation/controller/states.dart';
 
