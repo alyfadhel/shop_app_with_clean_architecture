@@ -1,6 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app_with_clean_architecture/core/network/dio_helper.dart';
+import 'package:shop_app_with_clean_architecture/features/home/data/datasource/base_home_remote_data_source.dart';
+import 'package:shop_app_with_clean_architecture/features/home/data/repository/home_repository.dart';
+import 'package:shop_app_with_clean_architecture/features/home/domain/repository/base_home_repository.dart';
+import 'package:shop_app_with_clean_architecture/features/home/domain/usecase/get_banners_use_case.dart';
+import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/login/data/datasource/base_login_remote_data_source.dart';
 import 'package:shop_app_with_clean_architecture/features/login/data/repository/login_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/login/domain/repository/base_login_repository.dart';
@@ -11,11 +16,20 @@ final sl = GetIt.instance;
 
 class ServiceLocator {
   Future<void> init() async {
-    sl.registerFactory(
-      () => LoginCubit(
+    sl.registerFactory(() => LoginCubit(
         sl(),
-      ),
-    );
+      ),);
+
+    sl.registerFactory(() => HomeCubit(sl()));
+
+
+    sl.registerLazySingleton(() => GetBannersUseCase(sl()));
+
+    sl.registerLazySingleton<BaseHomeRepository>(
+            () => HomeRepository(sl()));
+
+    sl.registerLazySingleton<BaseHomeRemoteDataSource>(
+            () => HomeRemoteDataSource(sl()));
 
     sl.registerLazySingleton(() => GetUserLoginUseCase(sl()));
 

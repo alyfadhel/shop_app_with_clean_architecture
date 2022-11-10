@@ -9,13 +9,13 @@ class HomeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => HomeCubit(),
-      child: BlocConsumer<HomeCubit,HomeStates>(
+      create: (BuildContext context) => BottomNavigationBarCubit(),
+      child: BlocConsumer<BottomNavigationBarCubit,BottomNavigationBarStates>(
         listener: (BuildContext context, state) {
 
         },
         builder: (context, state) {
-          var cubit = HomeCubit.get(context);
+          var cubit = BottomNavigationBarCubit.get(context);
           return Scaffold(
             bottomNavigationBar: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,

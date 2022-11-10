@@ -6,11 +6,11 @@ import 'package:shop_app_with_clean_architecture/features/favorites/presentation
 import 'package:shop_app_with_clean_architecture/features/home/presentation/screens/products.dart';
 import 'package:shop_app_with_clean_architecture/features/settings/presentation/screens/settings.dart';
 
-class HomeCubit extends Cubit<HomeStates>
+class BottomNavigationBarCubit extends Cubit<BottomNavigationBarStates>
 {
-  HomeCubit(): super(InitialHomeState());
+  BottomNavigationBarCubit(): super(InitialHomeState());
 
-  static HomeCubit get(context)=>BlocProvider.of(context);
+  static BottomNavigationBarCubit get(context)=>BlocProvider.of(context);
 
   int currentIndex = 0;
 

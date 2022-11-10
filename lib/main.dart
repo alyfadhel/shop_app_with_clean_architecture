@@ -6,6 +6,7 @@ import 'package:shop_app_with_clean_architecture/core/network/end-points.dart';
 import 'package:shop_app_with_clean_architecture/core/observer/observer.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/theme_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/service/service_locator.dart';
+import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/login/presentation/screens/login.dart';
 import 'package:shop_app_with_clean_architecture/features/on_boarding/on_boardind_screen.dart';
 
@@ -38,10 +39,13 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key,required this.startWidget});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: getApplicationLightTheme(),
-      home: startWidget,
+    return BlocProvider(
+      create: (BuildContext context)=> sl<HomeCubit>()..getBanners(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: getApplicationLightTheme(),
+        home: startWidget,
+      ),
     );
   }
 }

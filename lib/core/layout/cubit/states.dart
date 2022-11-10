@@ -1,5 +1,5 @@
-abstract class HomeStates{}
+abstract class BottomNavigationBarStates{}
 
-class InitialHomeState extends HomeStates{}
+class InitialHomeState extends BottomNavigationBarStates{}
 
-class ChangeBottomNav extends HomeStates{}
+class ChangeBottomNav extends BottomNavigationBarStates{}

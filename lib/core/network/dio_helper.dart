@@ -10,7 +10,7 @@ abstract class DioHelper {
     required String endPoint,
     dynamic data,
     dynamic query,
-    String? token,
+    String? Authorization,
     ProgressCallback? progressCallback,
     CancelToken? cancelToken,
     int? timeOut,
@@ -22,7 +22,7 @@ abstract class DioHelper {
     required String endPoint,
     dynamic data,
     dynamic query,
-    String? token,
+    String? Authorization,
     CancelToken? cancelToken,
     int? timeOut,
     bool isMultipart = false,
@@ -44,7 +44,7 @@ class DioHelperImpl implements DioHelper {
     required String endPoint,
     data,
     query,
-    String? token,
+    String? Authorization,
     CancelToken? cancelToken,
     int? timeOut,
     bool isMultipart = false,
@@ -57,7 +57,7 @@ class DioHelperImpl implements DioHelper {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
-      if (token != null) 'token': token,
+      if (token != null) 'Authorization': token,
     };
 
     debugPrint('URL => ${dio.options.baseUrl + endPoint}');
@@ -80,7 +80,7 @@ class DioHelperImpl implements DioHelper {
     required String endPoint,
     data,
     query,
-    String? token,
+    String? Authorization,
     ProgressCallback? progressCallback,
     CancelToken? cancelToken,
     int? timeOut,
@@ -94,7 +94,7 @@ class DioHelperImpl implements DioHelper {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
-      if (token != null) 'token': token,
+      if (token != null) 'Authorization': token,
     };
 
     debugPrint('URL => ${dio.options.baseUrl + endPoint}');
