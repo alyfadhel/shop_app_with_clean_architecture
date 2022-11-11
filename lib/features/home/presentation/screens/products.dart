@@ -42,7 +42,7 @@ class BuilderWidget extends StatelessWidget {
         return Column(
           children: [
             CarouselSlider(
-                items: cubit.home?.data.banners
+                items: cubit.home!.data.banners
                     .map((e) => Image(
                   width: double.infinity,
                   fit: BoxFit.fill,
