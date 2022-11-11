@@ -30,7 +30,7 @@ ThemeData getApplicationLightTheme() {
         color: Colors.white,
       ),
     ),
-    primarySwatch: ColorManager.mGreen,
+    primarySwatch: Colors.blue ,
     bottomSheetTheme: const BottomSheetThemeData(
       backgroundColor: Colors.white,
       elevation: AppSize.s3,
@@ -38,7 +38,10 @@ ThemeData getApplicationLightTheme() {
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: Colors.black,
-        textStyle: getRegularStyle(color: Colors.black, fontSize: FontSize.s18),
+        textStyle: getRegularStyle(
+            color: Colors.black,
+            fontSize: FontSize.s18,
+        ),
       ),
     ),
 
@@ -91,7 +94,7 @@ ThemeData getApplicationLightTheme() {
         fontSize: FontSize.s14,
       ),
       bodyMedium: getRegularStyle(
-        color: ColorManager.bGreen,
+        color: ColorManager.bBlack,
         fontSize: FontSize.s18,
       ),
       bodySmall: getRegularStyle(
