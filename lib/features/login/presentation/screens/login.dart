@@ -1,6 +1,6 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app_with_clean_architecture/core/layout/home_layout.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/color_manager.dart';
@@ -116,25 +116,26 @@ class LoginScreen extends StatelessWidget {
                         const SizedBox(
                           height: AppSize.s40,
                         ),
-                        ConditionalBuilder(
-                          condition: state is! GetLoginLoadingState,
-                          builder: (context) => MyButton(
-                            onPressedTextButton: ()
-                            {
-                              if(formKey.currentState!.validate()){
-                                cubit.loginUser(
+                        Conditional.single(
+                            context: context,
+                            conditionBuilder: (context) => state is! GetLoginLoadingState,
+                            widgetBuilder: (context) => MyButton(
+                              onPressedTextButton: ()
+                              {
+                                if(formKey.currentState!.validate()){
+                                  cubit.loginUser(
                                     email: cubit.emailController.text,
                                     password: cubit.passwordController.text,
-                                );
-                              }
-                            },
-                            text: AppStrings.login,
-                            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                              color: Colors.white,
-                              fontSize: AppSize.s25,
+                                  );
+                                }
+                              },
+                              text: AppStrings.login,
+                              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                                color: Colors.white,
+                                fontSize: AppSize.s25,
+                              ),
                             ),
-                          ),
-                          fallback: (context) => const Center(child: CircularProgressIndicator()),
+                            fallbackBuilder: (context) => const Center(child: CircularProgressIndicator()),
                         ),
                         const SizedBox(
                           height: AppSize.s40,

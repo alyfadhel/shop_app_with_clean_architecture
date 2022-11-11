@@ -39,13 +39,15 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key,required this.startWidget});
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context)=> sl<HomeCubit>()..getBanners(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: getApplicationLightTheme(),
-        home: startWidget,
-      ),
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => sl<HomeCubit>()..getBanners(),)
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: getApplicationLightTheme(),
+          home: startWidget,
+        ),
     );
   }
 }
