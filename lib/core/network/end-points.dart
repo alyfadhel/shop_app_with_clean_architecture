@@ -4,6 +4,7 @@ const String version = '/api';
 const String loginEndPoint = '/login';
 const String homeEndPoint = '/home';
 const String registerEndPoint = '/register';
+const String productsDetailsEndPoint = '/products';
 
 
  String? token = '';

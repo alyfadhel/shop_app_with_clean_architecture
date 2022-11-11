@@ -1,9 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app_with_clean_architecture/core/resources/values_manager.dart';
-import 'package:shop_app_with_clean_architecture/features/home/data/models/home_model.dart';
-import 'package:shop_app_with_clean_architecture/features/home/domain/entities/home.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/states.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/widgets/build_products.dart';

@@ -9,6 +9,7 @@ import 'package:shop_app_with_clean_architecture/core/service/service_locator.da
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/login/presentation/screens/login.dart';
 import 'package:shop_app_with_clean_architecture/features/on_boarding/on_boardind_screen.dart';
+import 'package:shop_app_with_clean_architecture/features/products_details/presentation/controller/cubit/cubit.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => sl<HomeCubit>()..getBanners(),)
+          BlocProvider(create: (context) => sl<HomeCubit>()..getBanners(),),
+          BlocProvider(create: (context) => sl<ProductsDetailsCubit>()..getProductsDetails(ProductsDetailsCubit.get(context).productsDetails!.data.id),)
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

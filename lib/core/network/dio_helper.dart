@@ -11,6 +11,7 @@ abstract class DioHelper {
     dynamic data,
     dynamic query,
     String? Authorization,
+    String? lang,
     ProgressCallback? progressCallback,
     CancelToken? cancelToken,
     int? timeOut,
@@ -23,6 +24,7 @@ abstract class DioHelper {
     dynamic data,
     dynamic query,
     String? Authorization,
+    String? lang,
     CancelToken? cancelToken,
     int? timeOut,
     bool isMultipart = false,
@@ -45,6 +47,7 @@ class DioHelperImpl implements DioHelper {
     data,
     query,
     String? Authorization,
+    String? lang,
     CancelToken? cancelToken,
     int? timeOut,
     bool isMultipart = false,
@@ -57,6 +60,7 @@ class DioHelperImpl implements DioHelper {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
+      if (!isMultipart) 'lang': 'en',
       if (token != null) 'Authorization': token,
     };
 
@@ -81,6 +85,7 @@ class DioHelperImpl implements DioHelper {
     data,
     query,
     String? Authorization,
+    String? lang,
     ProgressCallback? progressCallback,
     CancelToken? cancelToken,
     int? timeOut,
@@ -94,6 +99,7 @@ class DioHelperImpl implements DioHelper {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
+      if (!isMultipart) 'lang': 'en',
       if (token != null) 'Authorization': token,
     };
 

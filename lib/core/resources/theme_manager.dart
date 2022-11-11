@@ -106,8 +106,8 @@ ThemeData getApplicationLightTheme() {
         fontSize: FontSize.s30,
       ),
       headlineSmall: getRegularStyle(
-        color: ColorManager.sWhite,
-        fontSize: FontSize.s16,
+        color: ColorManager.sBlack,
+        fontSize: FontSize.s25,
       ),
     ),
     // input decoration theme (text form field)
