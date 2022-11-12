@@ -18,6 +18,7 @@ class HomeCubit extends Cubit<HomeStates>
    Home? home;
   void getBanners()async
   {
+    emit(GetHomeLoadingState());
     final result = await getBannersUseCase(const NoParameters());
     print('Ali: $result');
     result.fold(

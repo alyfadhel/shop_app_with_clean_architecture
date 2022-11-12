@@ -6,6 +6,7 @@ import 'package:shop_app_with_clean_architecture/core/network/end-points.dart';
 import 'package:shop_app_with_clean_architecture/core/observer/observer.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/theme_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/service/service_locator.dart';
+import 'package:shop_app_with_clean_architecture/features/categories/presentation/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/states.dart';
 import 'package:shop_app_with_clean_architecture/features/login/presentation/screens/login.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => sl<HomeCubit>()..getBanners(),),
+          BlocProvider(create: (context) => sl<CategoriesCubit>()..getCategories(),),
         ],
         child: BlocConsumer<HomeCubit,HomeStates>(
           listener: (context, state) {

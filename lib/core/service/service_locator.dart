@@ -1,6 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app_with_clean_architecture/core/network/dio_helper.dart';
+import 'package:shop_app_with_clean_architecture/features/categories/datasource/datasource/base_categories_remote_data_source.dart';
+import 'package:shop_app_with_clean_architecture/features/categories/datasource/repository/categories_repository.dart';
+import 'package:shop_app_with_clean_architecture/features/categories/domain/repository/base_categories_repository.dart';
+import 'package:shop_app_with_clean_architecture/features/categories/domain/usecase/base_get_categories_use_case.dart';
+import 'package:shop_app_with_clean_architecture/features/categories/presentation/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/home/data/datasource/base_home_remote_data_source.dart';
 import 'package:shop_app_with_clean_architecture/features/home/data/repository/home_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/home/domain/repository/base_home_repository.dart';
@@ -19,7 +24,15 @@ final sl = GetIt.instance;
 class ServiceLocator {
   Future<void> init() async {
 
+    sl.registerFactory(() => CategoriesCubit(sl()));
 
+    sl.registerLazySingleton(() => GetCategoriesUseCase(sl()));
+
+    sl.registerLazySingleton<BaseCategoriesRemoteDataSource>(
+            () => CategoriesRemoteDataSource(sl()));
+
+    sl.registerLazySingleton<BaseCategoriesRepository>(
+            () => CategoriesRepository(sl()));
 
     sl.registerFactory(() => LoginCubit(
         sl(),
