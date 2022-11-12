@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/values_manager.dart';
 import 'package:shop_app_with_clean_architecture/features/categories/domain/entities/categories.dart';
 import 'package:shop_app_with_clean_architecture/features/categories/presentation/cubit/cubit.dart';
@@ -16,10 +17,15 @@ class CategoriesScreen extends StatelessWidget {
         var cubit = CategoriesCubit.get(context);
         return Scaffold(
           appBar: AppBar(),
-          body: ListView.builder(
-            itemBuilder: (context, index) =>
-                CategoriesItem(data: cubit.categoriesData[index]),
-            itemCount: cubit.categoriesData.length,
+          body: Conditional.single(
+            context: context,
+            conditionBuilder: (context) => state is! GetCategoriesLoadingState,
+            widgetBuilder: (context) => ListView.builder(
+              itemBuilder: (context, index) =>
+                  CategoriesItem(data: cubit.categoriesData[index]),
+              itemCount: cubit.categoriesData.length,
+            ),
+            fallbackBuilder: (context) => const Center(child: CircularProgressIndicator(),),
           ),
         );
       },
