@@ -7,9 +7,9 @@ import 'package:shop_app_with_clean_architecture/core/observer/observer.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/theme_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/service/service_locator.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
+import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/states.dart';
 import 'package:shop_app_with_clean_architecture/features/login/presentation/screens/login.dart';
 import 'package:shop_app_with_clean_architecture/features/on_boarding/on_boardind_screen.dart';
-import 'package:shop_app_with_clean_architecture/features/products_details/presentation/controller/cubit/cubit.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +32,7 @@ void main() async{
 
   runApp(MyApp(
     startWidget: widget,
+
   ));
 }
 
@@ -43,12 +44,18 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => sl<HomeCubit>()..getBanners(),),
-          BlocProvider(create: (context) => sl<ProductsDetailsCubit>()..getProductsDetails(ProductsDetailsCubit.get(context).productsDetails!.data.id),)
         ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: getApplicationLightTheme(),
-          home: startWidget,
+        child: BlocConsumer<HomeCubit,HomeStates>(
+          listener: (context, state) {
+
+          },
+          builder: (context, state) {
+            return  MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: getApplicationLightTheme(),
+              home: startWidget,
+            );
+          },
         ),
     );
   }

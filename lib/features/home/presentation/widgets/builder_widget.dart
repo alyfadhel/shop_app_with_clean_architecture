@@ -48,7 +48,7 @@ class BuilderWidget extends StatelessWidget {
                 crossAxisSpacing: 1.0,
                 childAspectRatio: 1/1.8,
                 children: List.generate(cubit.home!.data.products.length, (index) =>  BuildProducts(model: cubit.home!.data.products[index],)),
-              )
+              ),
             ],
           ),
         );

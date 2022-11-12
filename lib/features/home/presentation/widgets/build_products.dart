@@ -4,7 +4,6 @@ import 'package:shop_app_with_clean_architecture/core/resources/values_manager.d
 import 'package:shop_app_with_clean_architecture/features/home/domain/entities/home.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/states.dart';
-import 'package:shop_app_with_clean_architecture/features/products_details/presentation/screens/products_details.dart';
 
 class BuildProducts extends StatelessWidget {
   final Products model;
@@ -19,45 +18,37 @@ class BuildProducts extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            InkWell(
-              onTap: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ProductsDetailsScreen(),),);
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppSize.s10,
-                ),
-                child: Stack(
-                  alignment: AlignmentDirectional.bottomStart,
-                  children: [
-                    Image(
-                      width: double.infinity,
-                      height: 200.0,
-                      image: NetworkImage(
-                        model.image,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSize.s10,
+              ),
+              child: Stack(
+                alignment: AlignmentDirectional.bottomStart,
+                children: [
+                  Image(
+                    width: double.infinity,
+                    height: 200.0,
+                    image: NetworkImage(
+                      model.image,
+                    ),
+                  ),
+                  if (model.discount != 0)
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0,
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Colors.red,
+                      ),
+                      child: const Text(
+                        'DISCOUNT',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12.0,
+                        ),
                       ),
                     ),
-                    if (model.discount != 0)
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10.0,
-                        ),
-                        decoration: const BoxDecoration(
-                          color: Colors.red,
-                        ),
-                        child: const Text(
-                          'DISCOUNT',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
+                ],
               ),
             ),
             const SizedBox(
