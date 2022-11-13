@@ -1,13 +1,15 @@
 import 'package:equatable/equatable.dart';
+import 'package:shop_app_with_clean_architecture/features/categories/domain/entities/categories.dart';
 
-class Home extends Equatable
+class ProductsEntities extends Equatable
 {
   final bool status;
-  final HomeData data;
+  final Data data;
 
- const Home({
-  required this.status,
-  required this.data,
+
+ const ProductsEntities({
+   required this.status,
+   required this.data,
  });
 
   @override
@@ -18,41 +20,24 @@ class Home extends Equatable
 
 }
 
-class HomeData extends Equatable
+class Data extends Equatable
 {
- final List<Banners>banners;
- final List<Products>products;
+  final int currentPage;
+  final List<ProductsData>data;
 
-
- const HomeData({
-  required this.banners,
-  required this.products,
- });
-
-  @override
-  List<Object?> get props => [];
-
-}
-
-class Banners extends Equatable
-{
-  final int id;
-  final String image;
-
- const Banners({
-  required this.id,
-  required this.image,
+ const Data({
+   required this.currentPage,
+   required this.data,
  });
 
   @override
   List<Object?> get props => [
-    id,
-    image,
+    currentPage,
+    data,
   ];
-
 }
 
-class Products extends Equatable
+class ProductsData extends Equatable
 {
   final int id;
   final dynamic price;
@@ -61,12 +46,10 @@ class Products extends Equatable
   final String image;
   final String name;
   final String description;
-  final List<String> images;
   final bool inFavorites;
   final bool inCart;
 
-
- const Products(
+ const ProductsData(
       {
       required this.id,
       required this.price,
@@ -75,13 +58,21 @@ class Products extends Equatable
       required this.image,
       required this.name,
       required this.description,
-      required this.images,
       required this.inFavorites,
       required this.inCart,
       });
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [
+    id,
+    price,
+    oldPrice,
+    discount,
+    image,
+    name,
+    description,
+    inFavorites,
+    inCart,
+  ];
 
 }
-

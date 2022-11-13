@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app_with_clean_architecture/core/resources/values_manager.dart';
-import 'package:shop_app_with_clean_architecture/features/home/domain/entities/home.dart';
-import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
-import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/states.dart';
+import 'package:shop_app_with_clean_architecture/features/products/domain/entities/products.dart';
+import 'package:shop_app_with_clean_architecture/features/products/presentation/controller/cubit/cubit.dart';
+import 'package:shop_app_with_clean_architecture/features/products/presentation/controller/cubit/states.dart';
+
+import '../../../../core/resources/values_manager.dart';
 
 class BuildProducts extends StatelessWidget {
-  final Products model;
+  final ProductsData model;
   const BuildProducts({Key? key,required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit, HomeStates>(
+    return BlocConsumer<BannersCubit,BannersStates>(
       listener: (context, state) {
 
       },
