@@ -39,6 +39,7 @@ class BannersCubit extends Cubit<BannersStates>
 
   void getProducts()async
   {
+    emit(GetProductLoadingState());
     final result = await getProductsUseCase(const NoParameters());
 
     result.fold(

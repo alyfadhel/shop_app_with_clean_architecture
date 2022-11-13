@@ -19,37 +19,43 @@ class BuildProducts extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppSize.s10,
-              ),
-              child: Stack(
-                alignment: AlignmentDirectional.bottomStart,
-                children: [
-                  Image(
-                    width: double.infinity,
-                    height: 200.0,
-                    image: NetworkImage(
-                      model.image,
+            InkWell(
+              onTap: ()
+              {
+
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSize.s10,
+                ),
+                child: Stack(
+                  alignment: AlignmentDirectional.bottomStart,
+                  children: [
+                    Image(
+                      width: double.infinity,
+                      height: 200.0,
+                      image: NetworkImage(
+                        model.image,
+                      ),
                     ),
-                  ),
-                  if (model.discount != 0)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0,
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Colors.red,
-                      ),
-                      child: const Text(
-                        'DISCOUNT',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12.0,
+                    if (model.discount != 0)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10.0,
+                        ),
+                        decoration: const BoxDecoration(
+                          color: Colors.red,
+                        ),
+                        child: const Text(
+                          'DISCOUNT',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.0,
+                          ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
             ),
             const SizedBox(
