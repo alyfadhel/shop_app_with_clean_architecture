@@ -35,3 +35,21 @@ class GetProductErrorState extends BannersStates
 
   GetProductErrorState(this.error);
 }
+
+class GetProductDetailsLoadingState extends BannersStates{}
+
+class GetProductDetailsSuccessState extends BannersStates{
+  final Data data;
+
+  GetProductDetailsSuccessState(this.data);
+
+}
+
+class GetProductDetailsErrorState extends BannersStates
+{
+  final String error;
+
+  GetProductDetailsErrorState(this.error);
+
+
+}

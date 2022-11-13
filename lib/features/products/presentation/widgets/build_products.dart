@@ -3,26 +3,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_with_clean_architecture/features/products/domain/entities/products.dart';
 import 'package:shop_app_with_clean_architecture/features/products/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/products/presentation/controller/cubit/states.dart';
+import 'package:shop_app_with_clean_architecture/features/products/presentation/screens/products_details.dart';
 
 import '../../../../core/resources/values_manager.dart';
 
 class BuildProducts extends StatelessWidget {
   final ProductsData model;
-  const BuildProducts({Key? key,required this.model}) : super(key: key);
+
+  const BuildProducts({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<BannersCubit,BannersStates>(
-      listener: (context, state) {
-
-      },
+    return BlocConsumer<BannersCubit, BannersStates>(
+      listener: (context, state) {},
       builder: (context, state) {
         return Column(
           children: [
             InkWell(
-              onTap: ()
-              {
-
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductsDetailsScreen(id: model.id),
+                    ),
+                );
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -96,8 +100,7 @@ class BuildProducts extends StatelessWidget {
                         ),
                       const Spacer(),
                       IconButton(
-                        onPressed: ()
-                        {
+                        onPressed: () {
                           //ShopCubit.get(context).changeFavorites(model.id!);
                         },
                         icon: const CircleAvatar(

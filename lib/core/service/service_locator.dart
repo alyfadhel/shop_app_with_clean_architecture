@@ -15,6 +15,7 @@ import 'package:shop_app_with_clean_architecture/features/products/data/datasour
 import 'package:shop_app_with_clean_architecture/features/products/data/repository/banners_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/products/domain/repository/base_banners_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/products/domain/usecase/get_banners_use_case.dart';
+import 'package:shop_app_with_clean_architecture/features/products/domain/usecase/get_products_details_use_case.dart';
 import 'package:shop_app_with_clean_architecture/features/products/domain/usecase/get_products_use_cse.dart';
 import 'package:shop_app_with_clean_architecture/features/products/presentation/controller/cubit/cubit.dart';
 
@@ -38,7 +39,9 @@ class ServiceLocator {
             () => CategoriesRepository(sl()));
 ///////////////////////////////////////////////////////////////////
 
-    sl.registerFactory(() => BannersCubit(sl(),sl()));
+    sl.registerFactory(() => BannersCubit(sl(),sl(),sl()));
+
+    sl.registerLazySingleton(() => GetProductsDetailsUseCase(sl()));
 
     sl.registerLazySingleton(() => GetProductsUseCase(sl()));
 

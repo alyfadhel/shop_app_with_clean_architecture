@@ -32,4 +32,14 @@ class BannersRepository extends BaseBannersRepository
     }
   }
 
+  @override
+  Future<Either<Failure, Data>> getProductsDetails(ProductsDetailsParameters parameters) async{
+    final result = await bannersRemoteDataSource.getProductsDetails(parameters);
+    try{
+      return Right(result);
+    }on ServerException catch(failure){
+      return Left(ServerFailure(failure.statusErrorMessageModel.message));
+    }
+  }
+
 }
