@@ -32,6 +32,7 @@ class ShowProductsDetails extends StatelessWidget {
                       Image(
                         width: double.infinity,
                         height: AppSize.s500,
+                        fit: BoxFit.fill,
                         image: NetworkImage(
                           productsDetails.data.image,
                         ),
