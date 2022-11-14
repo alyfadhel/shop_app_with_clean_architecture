@@ -23,18 +23,14 @@ class ProductsDetailsScreen extends StatelessWidget {
           var cubit = BannersCubit.get(context);
           return Scaffold(
             appBar: AppBar(),
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  if(cubit.data != null)
-                  Conditional.single(
-                      context: context,
-                      conditionBuilder: (context) => true,
-                      widgetBuilder: (context) => ShowProductsDetails(model: cubit.data!),
-                      fallbackBuilder: (context) => const Center(child: CircularProgressIndicator(),),
-                  ),
-                ],
-              ),
+            body: Conditional.single(
+                context: context,
+                conditionBuilder: (context) => cubit.data!=null,
+                widgetBuilder: (context) => ListView.builder(
+                  itemBuilder: (context, index) => ShowProductsDetails(model: cubit.data!),
+                  itemCount: cubit.data!.data.length,
+                ),
+                fallbackBuilder: (context) => const Center(child: CircularProgressIndicator(),),
             ),
           );
         },
@@ -54,31 +50,29 @@ class ShowProductsDetails extends StatelessWidget {
 
       },
       builder: (context, state) {
-        return SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(AppPadding.p20),
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: AppSize.s500,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          model.data[0].image,
-                      ),
+        return Padding(
+          padding: const EdgeInsets.all(AppPadding.p20),
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: AppSize.s500,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        model.data[0].image,
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: AppSize.s20,
-                ),
-                Text(
-                  model.data[0].description,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: AppSize.s20,
+              ),
+              Text(
+                model.data[0].description,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ],
           ),
         );
       },

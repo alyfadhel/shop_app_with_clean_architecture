@@ -29,7 +29,7 @@ class BannersRemoteDataSource extends BaseBannersRemoteDataSource
   @override
   Future<List<ProductsDataModel>> getProducts() async{
     final response = await dioHelper.get(
-      endPoint: productsDetailsEndPoint,
+      endPoint: productsEndPoint,
       Authorization: token,
     );
 
@@ -41,10 +41,10 @@ class BannersRemoteDataSource extends BaseBannersRemoteDataSource
   @override
   Future<DataModel> getProductsDetails(ProductsDetailsParameters parameters)async {
     final response = await dioHelper.get(
-      endPoint: productsDetailsEndPoint,
-      data: {
-        'id' : parameters.id,
-      },
+      endPoint: productsDetailsEndPoint(parameters.id),
+      // data: {
+      //   'id' : parameters.id,
+      // },
       Authorization: token,
     );
 

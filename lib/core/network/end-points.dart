@@ -4,8 +4,10 @@ const String version = '/api';
 const String loginEndPoint = '/login';
 const String bannersEndPoint = '/banners';
 const String registerEndPoint = '/register';
-const String productsDetailsEndPoint = '/products';
+const String productsEndPoint = '/products';
 const String categoriesDetailsEndPoint = '/categories';
+
+String productsDetailsEndPoint(int productsId)=>'/products/$productsId';
 
 
 

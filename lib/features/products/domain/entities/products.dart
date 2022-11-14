@@ -22,7 +22,7 @@ class ProductsEntities extends Equatable
 
 class Data extends Equatable
 {
-  final int currentPage;
+  final int? currentPage;
   final List<ProductsData>data;
 
  const Data({
