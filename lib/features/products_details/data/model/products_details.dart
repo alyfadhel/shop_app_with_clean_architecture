@@ -28,6 +28,7 @@ class ProductsDetailsDataModel extends ProductsDetailsData
    required super.description,
    required super.inFavorites,
    required super.inCart,
+   required super.images,
  });
 
  factory ProductsDetailsDataModel.fromJson(Map<String,dynamic>json)
@@ -42,6 +43,7 @@ class ProductsDetailsDataModel extends ProductsDetailsData
        description: json['description'],
        inFavorites: json['in_favorites'],
        inCart: json['in_cart'],
+       images: json['images'].cast<String>(),
    );
  }
 

@@ -27,6 +27,7 @@ class ProductsDetailsData extends Equatable
   final String description;
   final bool inFavorites;
   final bool inCart;
+  final List<String>images;
 
 
  const ProductsDetailsData(
@@ -40,6 +41,7 @@ class ProductsDetailsData extends Equatable
       required this.description,
       required this.inFavorites,
       required this.inCart,
+      required this.images,
       });
 
   @override
@@ -53,6 +55,7 @@ class ProductsDetailsData extends Equatable
     description,
     inFavorites,
     inCart,
+    images,
   ];
 
 }
