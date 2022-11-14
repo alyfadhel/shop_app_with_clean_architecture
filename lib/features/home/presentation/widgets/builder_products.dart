@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app_with_clean_architecture/core/resources/values_manager.dart';
 import 'package:shop_app_with_clean_architecture/features/home/domain/entities/home.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/state.dart';
@@ -15,37 +16,41 @@ class BuildProducts extends StatelessWidget {
 
       },
       builder: (context, state) {
-        var cubit = HomeCubit.get(context);
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              alignment: AlignmentDirectional.bottomStart,
-              children: [
-                Image(
-                  width: double.infinity,
-                  height: 200.0,
-                  image: NetworkImage(
-                    products.image,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSize.s10,
+              ),
+              child: Stack(
+                alignment: AlignmentDirectional.bottomStart,
+                children: [
+                  Image(
+                    width: double.infinity,
+                    height: 200.0,
+                    image: NetworkImage(
+                      products.image,
+                    ),
                   ),
-                ),
-                if (products.discount != 0)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0,
-                    ),
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                    ),
-                    child: const Text(
-                      'DISCOUNT',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12.0,
+                  if (products.discount != 0)
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0,
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Colors.red,
+                      ),
+                      child: const Text(
+                        'DISCOUNT',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12.0,
+                        ),
                       ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
             const SizedBox(
               height: 8.0,
