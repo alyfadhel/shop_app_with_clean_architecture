@@ -8,9 +8,9 @@ import 'package:shop_app_with_clean_architecture/core/observer/observer.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/theme_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/service/service_locator.dart';
 import 'package:shop_app_with_clean_architecture/features/categories/presentation/cubit/cubit.dart';
+import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/login/presentation/screens/login.dart';
 import 'package:shop_app_with_clean_architecture/features/on_boarding/on_boardind_screen.dart';
-import 'package:shop_app_with_clean_architecture/features/products/presentation/controller/cubit/cubit.dart';
 
 
 void main() async {
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => sl<BannersCubit>()..getBanners()..getProducts(),),
+       BlocProvider(create: (context) => sl<HomeCubit>()..getHome(),),
         BlocProvider(create: (context) =>
         sl<CategoriesCubit>()
           ..getCategories(),),

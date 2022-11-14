@@ -1,13 +1,13 @@
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:shop_app_with_clean_architecture/features/categories/domain/entities/categories.dart';
 
-class ProductsEntities extends Equatable
+class Home extends Equatable
 {
   final bool status;
-  final Data data;
+  final HomeData data;
 
 
- const ProductsEntities({
+ const Home({
    required this.status,
    required this.data,
  });
@@ -17,28 +17,43 @@ class ProductsEntities extends Equatable
     status,
     data,
   ];
-
 }
 
-class Data extends Equatable
+class HomeData extends Equatable
 {
-  final int? currentPage;
-  final List<ProductsData>data;
+  final List<Banners>banners;
+  final List<Products>products;
 
- const Data({
-   required this.currentPage,
-   required this.data,
+  const HomeData({
+    required this.banners,
+    required this.products,
+  });
+
+  @override
+  List<Object?> get props => [
+    banners,
+    products,
+  ];
+}
+
+class Banners extends Equatable
+{
+  final int id;
+  final String image;
+
+ const Banners({
+ required  this.id,
+ required  this.image,
  });
 
   @override
   List<Object?> get props => [
-    currentPage,
-    data,
+    id,
+    image,
   ];
 }
 
-class ProductsData extends Equatable
-{
+class Products extends Equatable{
   final int id;
   final dynamic price;
   final dynamic oldPrice;
@@ -49,7 +64,7 @@ class ProductsData extends Equatable
   final bool inFavorites;
   final bool inCart;
 
- const ProductsData(
+ const Products(
       {
       required this.id,
       required this.price,
@@ -74,5 +89,4 @@ class ProductsData extends Equatable
     inFavorites,
     inCart,
   ];
-
 }
