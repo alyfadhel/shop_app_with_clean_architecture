@@ -4,6 +4,7 @@ import 'package:shop_app_with_clean_architecture/core/resources/values_manager.d
 import 'package:shop_app_with_clean_architecture/features/home/domain/entities/home.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/state.dart';
+import 'package:shop_app_with_clean_architecture/features/products_details/presentation/screens/products_details.dart';
 
 class BuildProducts extends StatelessWidget {
   final Products products;
@@ -19,37 +20,44 @@ class BuildProducts extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppSize.s10,
-              ),
-              child: Stack(
-                alignment: AlignmentDirectional.bottomStart,
-                children: [
-                  Image(
-                    width: double.infinity,
-                    height: 200.0,
-                    image: NetworkImage(
-                      products.image,
+            InkWell(
+              onTap: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProductsDetailsScreen(id: products.id),));
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSize.s10,
+                ),
+                child: Stack(
+                  alignment: AlignmentDirectional.bottomStart,
+                  children: [
+                    Image(
+                      width: double.infinity,
+                      height: 200.0,
+                      image: NetworkImage(
+                        products.image,
+                      ),
                     ),
-                  ),
-                  if (products.discount != 0)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0,
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Colors.red,
-                      ),
-                      child: const Text(
-                        'DISCOUNT',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12.0,
+                    if (products.discount != 0)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10.0,
+                        ),
+                        decoration: const BoxDecoration(
+                          color: Colors.red,
+                        ),
+                        child: const Text(
+                          'DISCOUNT',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.0,
+                          ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
             ),
             const SizedBox(
