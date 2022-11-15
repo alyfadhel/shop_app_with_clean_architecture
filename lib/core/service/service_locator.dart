@@ -6,6 +6,11 @@ import 'package:shop_app_with_clean_architecture/features/categories/datasource/
 import 'package:shop_app_with_clean_architecture/features/categories/domain/repository/base_categories_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/categories/domain/usecase/base_get_categories_use_case.dart';
 import 'package:shop_app_with_clean_architecture/features/categories/presentation/cubit/cubit.dart';
+import 'package:shop_app_with_clean_architecture/features/categories_details/data/datasource/base_categories_details_data_source.dart';
+import 'package:shop_app_with_clean_architecture/features/categories_details/data/repository/categories_details_repository.dart';
+import 'package:shop_app_with_clean_architecture/features/categories_details/domain/repository/base_categories_details_repository.dart';
+import 'package:shop_app_with_clean_architecture/features/categories_details/domain/usecase/get_categories_details_use_case.dart';
+import 'package:shop_app_with_clean_architecture/features/categories_details/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/home/data/datasource/base_home_remote_data_source.dart';
 import 'package:shop_app_with_clean_architecture/features/home/data/repository/home_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/home/domain/repository/base_home_repository.dart';
@@ -29,8 +34,17 @@ final sl = GetIt.instance;
 class ServiceLocator {
   Future<void> init() async {
 
+    sl.registerFactory(() => CategoriesDetailsCubit(sl()));
 
+    sl.registerLazySingleton(() => GetCategoriesDetailsUseCase(sl()));
 
+    sl.registerLazySingleton<BaseCategoriesDetailsRepository>(
+            () => CategoriesDetailsRepository(sl()));
+
+    sl.registerLazySingleton<BaseCategoriesDetailsRemoteDataSource>(
+            () => CategoriesDetailsRemoteDataSource(sl()));
+
+//////////////////////////////////////////////////////////////////////
     sl.registerFactory(() => CategoriesCubit(sl()));
 
     sl.registerLazySingleton(() => GetCategoriesUseCase(sl()));

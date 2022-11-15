@@ -35,7 +35,7 @@ class BuildProducts extends StatelessWidget {
                   children: [
                     Image(
                       width: double.infinity,
-                      height: 200.0,
+                      height: AppSize.s200,
                       image: NetworkImage(
                         products.image,
                       ),

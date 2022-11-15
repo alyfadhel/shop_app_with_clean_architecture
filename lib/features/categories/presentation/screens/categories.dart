@@ -26,7 +26,9 @@ class CategoriesScreen extends StatelessWidget {
                   CategoriesItem(data: cubit.categoriesData[index]),
               itemCount: cubit.categoriesData.length,
             ),
-            fallbackBuilder: (context) => const Center(child: CircularProgressIndicator(),),
+            fallbackBuilder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
         );
       },
@@ -44,9 +46,12 @@ class CategoriesItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(AppPadding.p20),
       child: InkWell(
-        onTap: ()
-        {
-           Navigator.push(context, MaterialPageRoute(builder: (context) => const CategoriesDetailsScreen(),));
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CategoriesDetailsScreen(id: data.id!),
+              ));
         },
         child: Row(
           children: [
