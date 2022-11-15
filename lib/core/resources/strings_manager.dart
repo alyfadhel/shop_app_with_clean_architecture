@@ -13,6 +13,7 @@ class AppStrings {
   static const String password =  'password';
   static const String haveNotAccount =  'Don\'t Have Account ? ';
   static const String registerHere =  'Register here';
+  static const String shopApp =  'Shop App';
 
 
 }
