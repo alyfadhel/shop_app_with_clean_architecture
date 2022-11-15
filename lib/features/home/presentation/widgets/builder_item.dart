@@ -1,11 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app_with_clean_architecture/core/resources/color_manager.dart';
+import 'package:shop_app_with_clean_architecture/core/resources/strings_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/values_manager.dart';
 import 'package:shop_app_with_clean_architecture/features/home/domain/entities/home.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/state.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/widgets/builder_products.dart';
+import 'package:shop_app_with_clean_architecture/features/home/presentation/screens/categoris.dart';
+
+import '../../../categories/presentation/screens/categories.dart';
 
 class BuilderItem extends StatelessWidget {
   final Home home;
@@ -18,9 +23,9 @@ class BuilderItem extends StatelessWidget {
 
       },
       builder: (context, state) {
-        var cubit = HomeCubit.get(context);
         return SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CarouselSlider(
                   items: home.data.banners
@@ -49,6 +54,41 @@ class BuilderItem extends StatelessWidget {
               const SizedBox(
                 height: AppSize.s30,
               ),
+              Padding(
+                padding: const EdgeInsets.all(AppPadding.p10),
+                child: Text(
+                  AppStrings.categories,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headlineMedium!
+                      .copyWith(
+                      color: ColorManager.sBlack,
+                      fontSize: AppSize.s30
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.s15,
+              ),
+              const CategoriesHomeScreen(),
+              Padding(
+                padding: const EdgeInsets.all(AppPadding.p10),
+                child: Text(
+                  AppStrings.newProducts,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headlineMedium!
+                      .copyWith(
+                      color: ColorManager.sBlack,
+                      fontSize: AppSize.s30
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.s20,
+              ),
               GridView.count(
                 crossAxisCount: 2,
                 shrinkWrap: true,
@@ -59,6 +99,7 @@ class BuilderItem extends StatelessWidget {
                 children: List.generate(home.data.products.length, (index) => BuildProducts(products: home.data.products[index]),
                 ),
               ),
+
             ],
           ),
         );

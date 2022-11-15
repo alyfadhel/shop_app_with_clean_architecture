@@ -14,6 +14,8 @@ class AppStrings {
   static const String haveNotAccount =  'Don\'t Have Account ? ';
   static const String registerHere =  'Register here';
   static const String shopApp =  'Shop App';
+  static const String categories =  'Categories';
+  static const String newProducts =  'New Products';
 
 
 }
