@@ -4,7 +4,8 @@ const String version = '/api';
 const String loginEndPoint = '/login';
 const String registerEndPoint = '/register';
 const String homeEndPoint = '/home';
-const String categoriesDetailsEndPoint = '/categories';
+const String categoriesEndPoint = '/categories';
+String categoriesDetailsEndPoint(int categoriesId)=> '/categories/$categoriesId';
 
 String productsDetailsEndPoint(int productsId)=>'/products/$productsId';
 

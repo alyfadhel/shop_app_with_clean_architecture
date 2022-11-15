@@ -14,7 +14,7 @@ class CategoriesRemoteDataSource extends BaseCategoriesRemoteDataSource {
   @override
   Future<List<CategoriesDataModel>> getCategories() async {
     final response = await dioHelper.get(
-      endPoint: categoriesDetailsEndPoint,
+      endPoint: categoriesEndPoint,
     );
     return List<CategoriesDataModel>.from((response['data']['data'] as List)
     .map((e) => CategoriesDataModel.fromJson(e)));
