@@ -2,6 +2,7 @@
 const String baseApiUrl = 'https://student.valuxapps.com';
 const String version = '/api';
 const String loginEndPoint = '/login';
+const String profileEndPoint = '/profile';
 const String registerEndPoint = '/register';
 const String homeEndPoint = '/home';
 const String categoriesEndPoint = '/categories';
