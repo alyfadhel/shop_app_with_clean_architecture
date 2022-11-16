@@ -1,58 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/values_manager.dart';
-import 'package:shop_app_with_clean_architecture/features/home/domain/entities/home.dart';
-import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
-import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/state.dart';
-import 'package:shop_app_with_clean_architecture/features/products_details/presentation/screens/products_details.dart';
+import 'package:shop_app_with_clean_architecture/features/categories_details/domain/entities/categories_details.dart';
 
-class BuildProducts extends StatelessWidget {
-  final Products products;
-  const BuildProducts({Key? key,required this.products}) : super(key: key);
+class ShowCategoriesDetails extends StatelessWidget {
+  final CategoriesDataDetails model;
+  const ShowCategoriesDetails({Key? key,required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        InkWell(
-          onTap: (){
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProductsDetailsScreen(id: products.id),));
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSize.s10,
-            ),
-            child: Stack(
-              alignment: AlignmentDirectional.bottomStart,
-              children: [
-                Image(
-                  width: double.infinity,
-                  height: AppSize.s200,
-                  image: NetworkImage(
-                    products.image,
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSize.s10,
+          ),
+          child: Stack(
+            alignment: AlignmentDirectional.bottomStart,
+            children: [
+              Image(
+                width: double.infinity,
+                height: AppSize.s200,
+                image: NetworkImage(
+                  model.image,
+                ),
+              ),
+              if (model.discount != 0)
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0,
+                  ),
+                  decoration: const BoxDecoration(
+                    color: Colors.red,
+                  ),
+                  child: const Text(
+                    'DISCOUNT',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12.0,
+                    ),
                   ),
                 ),
-                if (products.discount != 0)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0,
-                    ),
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                    ),
-                    child: const Text(
-                      'DISCOUNT',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12.0,
-                      ),
-                    ),
-                  ),
-              ],
-            ),
+            ],
           ),
         ),
         const SizedBox(
@@ -63,7 +52,7 @@ class BuildProducts extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                products.name,
+                model.name,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
@@ -73,7 +62,7 @@ class BuildProducts extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    '${products.price.round()}',
+                    '${model.price.round()}',
                     style: const TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.bold,
@@ -82,9 +71,9 @@ class BuildProducts extends StatelessWidget {
                   const SizedBox(
                     width: 10.0,
                   ),
-                  if (products.discount != 0)
+                  if (model.discount != 0)
                     Text(
-                      '${products.oldPrice.round()}',
+                      '${model.oldPrice.round()}',
                       style: const TextStyle(
                         color: Colors.red,
                         fontWeight: FontWeight.bold,
@@ -114,5 +103,6 @@ class BuildProducts extends StatelessWidget {
         ),
       ],
     );
+
   }
 }
