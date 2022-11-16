@@ -26,6 +26,11 @@ import 'package:shop_app_with_clean_architecture/features/products_details/data/
 import 'package:shop_app_with_clean_architecture/features/products_details/domain/repository/base_products_details_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/products_details/domain/usecase/get_products_details.dart';
 import 'package:shop_app_with_clean_architecture/features/products_details/presentation/controller/cubit/cubit.dart';
+import 'package:shop_app_with_clean_architecture/features/register/data/datasource/base_register_remote_data_source.dart';
+import 'package:shop_app_with_clean_architecture/features/register/data/repository/register_repository.dart';
+import 'package:shop_app_with_clean_architecture/features/register/domain/repository/base_register_repository.dart';
+import 'package:shop_app_with_clean_architecture/features/register/domain/usecase/get_register_user_use_case.dart';
+import 'package:shop_app_with_clean_architecture/features/register/presentation/controller/cubit/cubit.dart';
 
 
 
@@ -85,6 +90,16 @@ class ServiceLocator {
 
     sl.registerLazySingleton<BaseLoginRemoteDataSource>(
         () => LoginRemoteDataSource(sl()));
+ //////////////////////////////////////////////////////////////////
+    sl.registerFactory(() => RegisterCubit(sl()));
+
+    sl.registerLazySingleton(() => GetRegisterUserUseCase(sl()));
+
+    sl.registerLazySingleton<BaseRegisterRepository>(
+            () => RegisterRepository(sl()));
+
+    sl.registerLazySingleton<BaseRegisterRemoteDataSource>(
+            () => RegisterRemoteDataSource(sl()));
 ///////////////////////////////////////////////////////////////////
 
     sl.registerLazySingleton<DioHelper>(

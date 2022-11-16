@@ -9,8 +9,12 @@ class AppStrings {
   static const String skip =  'SKIP';
   static const String login =  'Login';
   static const String loginTitle =  'Login to browse hot offers';
+  static const String register =  'Register';
+  static const String registerTitle =  'Register to browse hot offers';
   static const String email =  'email address';
   static const String password =  'password';
+  static const String name =  'name';
+  static const String phone =  'phone';
   static const String haveNotAccount =  'Don\'t Have Account ? ';
   static const String registerHere =  'Register here';
   static const String shopApp =  'Shop App';

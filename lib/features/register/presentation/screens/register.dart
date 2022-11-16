@@ -2,59 +2,56 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app_with_clean_architecture/core/layout/home_layout.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/color_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/strings_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/values_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/service/service_locator.dart';
-import 'package:shop_app_with_clean_architecture/core/widgets/my_form_field.dart';
 import 'package:shop_app_with_clean_architecture/core/widgets/my_button.dart';
-import 'package:shop_app_with_clean_architecture/core/widgets/my_textButton.dart';
+import 'package:shop_app_with_clean_architecture/core/widgets/my_form_field.dart';
 import 'package:shop_app_with_clean_architecture/core/widgets/toast_state.dart';
-import 'package:shop_app_with_clean_architecture/features/login/presentation/controller/cubit.dart';
-import 'package:shop_app_with_clean_architecture/features/login/presentation/controller/states.dart';
-import 'package:shop_app_with_clean_architecture/features/register/presentation/screens/register.dart';
+import 'package:shop_app_with_clean_architecture/features/login/presentation/screens/login.dart';
+import 'package:shop_app_with_clean_architecture/features/register/presentation/controller/cubit/cubit.dart';
+import 'package:shop_app_with_clean_architecture/features/register/presentation/controller/cubit/states.dart';
 
 var formKey = GlobalKey<FormState>();
-
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: BlocProvider(
-        create: (BuildContext context) => sl<LoginCubit>(),
-        child: BlocConsumer<LoginCubit, LoginStates>(
-          listener: (context, state) {
-            if (state is GetLoginSuccessState) {
-              if (state.login.status!) {
-                showToast(
-                  text: state.login.message!,
-                  state: ToastState.success,
+    return BlocProvider(
+      create: (context) => sl<RegisterCubit>(),
+      child: BlocConsumer<RegisterCubit,RegisterStates>(
+        listener: (context, state) {
+          if (state is GetRegisterSuccessState) {
+            if (state.register.status) {
+              showToast(
+                text: state.register.message,
+                state: ToastState.success,
+              );
+              sl<SharedPreferences>()
+                  .setString('token', state.register.data.token)
+                  .then((value) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ),
                 );
-                sl<SharedPreferences>()
-                    .setString('token', state.login.data!.token!)
-                    .then((value) {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomeLayout(),
-                    ),
-                  );
-                });
-              } else {
-                showToast(
-                  text: state.login.message!,
-                  state: ToastState.error,
-                );
-              }
+              });
+            } else {
+              showToast(
+                text: state.register.message,
+                state: ToastState.error,
+              );
             }
-          },
-          builder: (context, state) {
-            var cubit = LoginCubit.get(context);
-            return Padding(
+          }
+        },
+        builder: (context, state) {
+          var cubit = RegisterCubit.get(context);
+          return  Scaffold(
+            appBar: AppBar(),
+            body: Padding(
               padding: const EdgeInsets.all(AppPadding.p20),
               child: Center(
                 child: SingleChildScrollView(
@@ -64,18 +61,34 @@ class LoginScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          AppStrings.login,
+                          AppStrings.register,
                           style: Theme.of(context).textTheme.headlineLarge,
                         ),
                         const SizedBox(
                           height: AppSize.s20,
                         ),
                         Text(
-                          AppStrings.loginTitle,
+                          AppStrings.registerTitle,
                           style: Theme.of(context)
                               .textTheme
                               .displayMedium!
                               .copyWith(color: ColorManager.gGrey),
+                        ),
+                        const SizedBox(
+                          height: AppSize.s40,
+                        ),
+                        MyFormField(
+                          controller: cubit.nameController,
+                          type: TextInputType.name,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please Enter Your Name';
+                            } else {
+                              return null;
+                            }
+                          },
+                          label: AppStrings.name,
+                          prefix: Icons.person,
                         ),
                         const SizedBox(
                           height: AppSize.s40,
@@ -97,6 +110,22 @@ class LoginScreen extends StatelessWidget {
                           height: AppSize.s40,
                         ),
                         MyFormField(
+                          controller: cubit.phoneController,
+                          type: TextInputType.phone,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please Enter Your phone';
+                            } else {
+                              return null;
+                            }
+                          },
+                          label: AppStrings.phone,
+                          prefix: Icons.phone_android,
+                        ),
+                        const SizedBox(
+                          height: AppSize.s40,
+                        ),
+                        MyFormField(
                           controller: cubit.passwordController,
                           type: TextInputType.visiblePassword,
                           validator: (value) {
@@ -111,7 +140,7 @@ class LoginScreen extends StatelessWidget {
                           suffix: cubit.suffix,
                           isPassword: cubit.isPassword,
                           onPressed: () {
-                            cubit.changePasswordVisibility();
+                            cubit.changeRegisterPasswordVisibility();
                           },
                         ),
                         const SizedBox(
@@ -120,60 +149,38 @@ class LoginScreen extends StatelessWidget {
                         Conditional.single(
                           context: context,
                           conditionBuilder: (context) =>
-                              state is! GetLoginLoadingState,
+                          state is! GetRegisterLoadingState,
                           widgetBuilder: (context) => MyButton(
                             onPressedTextButton: () {
                               if (formKey.currentState!.validate()) {
-                                cubit.loginUser(
-                                  email: cubit.emailController.text,
-                                  password: cubit.passwordController.text,
+                                cubit.getRegisterUser(
+                                    name: cubit.nameController.text,
+                                    email: cubit.emailController.text,
+                                    phone: cubit.phoneController.text,
+                                    password: cubit.passwordController.text,
                                 );
                               }
                             },
-                            text: AppStrings.login,
+                            text: AppStrings.register,
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineMedium!
                                 .copyWith(
-                                  color: Colors.white,
-                                  fontSize: AppSize.s25,
-                                ),
+                              color: Colors.white,
+                              fontSize: AppSize.s25,
+                            ),
                           ),
                           fallbackBuilder: (context) =>
-                              const Center(child: CircularProgressIndicator()),
-                        ),
-                        const SizedBox(
-                          height: AppSize.s40,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              AppStrings.haveNotAccount,
-                              style: Theme.of(context).textTheme.titleSmall,
-                            ),
-                            MyTextButton(
-                              onPressedTextButton: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const RegisterScreen(),
-                                  ),
-                                );
-                              },
-                              text: AppStrings.registerHere,
-                            )
-                          ],
+                          const Center(child: CircularProgressIndicator()),
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
