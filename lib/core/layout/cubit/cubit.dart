@@ -4,7 +4,7 @@ import 'package:shop_app_with_clean_architecture/core/layout/cubit/states.dart';
 import 'package:shop_app_with_clean_architecture/features/categories/presentation/screens/categories.dart';
 import 'package:shop_app_with_clean_architecture/features/favorites/presentation/screens/favorites.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/screens/products_screen.dart';
-import 'package:shop_app_with_clean_architecture/features/settings/presentation/screens/settings.dart';
+import 'package:shop_app_with_clean_architecture/features/settings/profile/presentation/screens/settings.dart';
 
 class BottomNavigationBarCubit extends Cubit<BottomNavigationBarStates>
 {

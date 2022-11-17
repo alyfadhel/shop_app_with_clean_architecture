@@ -31,6 +31,11 @@ import 'package:shop_app_with_clean_architecture/features/register/data/reposito
 import 'package:shop_app_with_clean_architecture/features/register/domain/repository/base_register_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/register/domain/usecase/get_register_user_use_case.dart';
 import 'package:shop_app_with_clean_architecture/features/register/presentation/controller/cubit/cubit.dart';
+import 'package:shop_app_with_clean_architecture/features/settings/profile/data/datasource/base_profile_remote_data_source.dart';
+import 'package:shop_app_with_clean_architecture/features/settings/profile/data/repository/profile_repository.dart';
+import 'package:shop_app_with_clean_architecture/features/settings/profile/domain/repository/base_profile_repository.dart';
+import 'package:shop_app_with_clean_architecture/features/settings/profile/domain/usecase/get_profile_use_case.dart';
+import 'package:shop_app_with_clean_architecture/features/settings/profile/presentation/controller/cubit/cubit.dart';
 
 
 
@@ -101,6 +106,17 @@ class ServiceLocator {
     sl.registerLazySingleton<BaseRegisterRemoteDataSource>(
             () => RegisterRemoteDataSource(sl()));
 ///////////////////////////////////////////////////////////////////
+
+    sl.registerFactory(() => ProfileCubit(sl()));
+
+    sl.registerLazySingleton(() => GetProfileUseCase(sl()));
+
+    sl.registerLazySingleton<BaseProfileRepository>(
+            () => ProfileRepository(sl()));
+
+    sl.registerLazySingleton<BaseProfileRemoteDataSource>(
+            () => ProfileRemoteDataSource(sl()));
+////////////////////////////////////////////////////////////////////
 
     sl.registerLazySingleton<DioHelper>(
       () => DioHelperImpl(),

@@ -1,8 +1,12 @@
-import 'package:shop_app_with_clean_architecture/features/profile/domain/entities/profile.dart';
+
+import 'package:shop_app_with_clean_architecture/features/settings/profile/domain/entities/profile.dart';
 
 class ProfileModel extends Profile
 {
- const ProfileModel({required super.status, required super.data});
+ const ProfileModel({
+   required super.status,
+   required super.data,
+ });
 
  factory ProfileModel.fromJson(Map<String,dynamic>json)
  {

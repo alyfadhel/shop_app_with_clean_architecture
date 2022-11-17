@@ -20,6 +20,7 @@ class AppStrings {
   static const String shopApp =  'Shop App';
   static const String categories =  'Categories';
   static const String newProducts =  'New Products';
+  static const String profile =  'Profile';
 
 
 }

@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,7 +10,6 @@ import 'package:shop_app_with_clean_architecture/features/categories/presentatio
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/login/presentation/screens/login.dart';
 import 'package:shop_app_with_clean_architecture/features/on_boarding/on_boardind_screen.dart';
-import 'package:shop_app_with_clean_architecture/features/products_details/presentation/controller/cubit/cubit.dart';
 
 
 void main() async {
@@ -51,6 +49,7 @@ class MyApp extends StatelessWidget {
       providers: [
        BlocProvider(create: (context) => sl<HomeCubit>()..getHome(),),
        BlocProvider(create: (context) => sl<CategoriesCubit>()..getCategories(),),
+
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
