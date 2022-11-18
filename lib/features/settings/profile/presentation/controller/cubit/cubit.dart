@@ -35,6 +35,11 @@ class ProfileCubit extends Cubit<ProfileStates>
     result.fold(
             (l) => emit(GetProfileErrorState(l.message)),
             (r) {
+              // updateProfile(
+              //   name: nameController.text,
+              //   email: emailController.text,
+              //   phone: phoneController.text,
+              // );
               profile = r;
               emit(GetProfileSuccessState(r));
             });
