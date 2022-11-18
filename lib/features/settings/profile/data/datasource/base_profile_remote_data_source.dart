@@ -28,14 +28,16 @@ class ProfileRemoteDataSource extends BaseProfileRemoteDataSource {
   @override
   Future<UpdateProfileModel> getUpdateProfile(
       UpdateProfileParameters parameters) async {
-    final response =
-        await dioHelper.put(
-            endPoint: updateProfileEndPoint,
-    data: {
-      'name': parameters.name,
-      'email': parameters.email,
-      'phone': parameters.phone,
-    });
+    final response = await dioHelper.put(
+      endPoint: updateProfileEndPoint,
+      data: {
+        'name': parameters.name,
+        'email': parameters.email,
+        'phone': parameters.phone,
+      },
+      Authorization: token,
+    );
+
     return UpdateProfileModel.fromJson(response);
   }
 }
