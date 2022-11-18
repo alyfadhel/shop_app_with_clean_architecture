@@ -6,6 +6,7 @@ const String profileEndPoint = '/profile';
 const String registerEndPoint = '/register';
 const String homeEndPoint = '/home';
 const String categoriesEndPoint = '/categories';
+const String updateProfileEndPoint = '/update-profile';
 String categoriesDetailsEndPoint(int categoriesId)=> '/categories/$categoriesId';
 
 String productsDetailsEndPoint(int productsId)=>'/products/$productsId';

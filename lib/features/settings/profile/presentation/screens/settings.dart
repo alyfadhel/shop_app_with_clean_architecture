@@ -49,6 +49,9 @@ class ShowProfileDetails extends StatelessWidget {
       },
       builder: (context, state) {
         var cubit = ProfileCubit.get(context);
+        cubit.nameController.text = profile.data.name;
+        cubit.emailController.text = profile.data.email;
+        cubit.phoneController.text = profile.data.phone;
         return Padding(
           padding:  const EdgeInsets.all(AppPadding.p20),
           child: Column(
@@ -66,7 +69,7 @@ class ShowProfileDetails extends StatelessWidget {
               MyFormField(
                 controller: cubit.nameController,
                 type: TextInputType.name,
-                label: profile.data.name,
+                label: 'name',
                 prefix: Icons.person,
                 validator: (value)
                 {
@@ -83,7 +86,7 @@ class ShowProfileDetails extends StatelessWidget {
               MyFormField(
                 controller: cubit.emailController,
                 type: TextInputType.emailAddress,
-                label: profile.data.email,
+                label: 'email',
                 prefix: Icons.email_outlined,
                 validator: (value)
                 {
@@ -100,7 +103,7 @@ class ShowProfileDetails extends StatelessWidget {
               MyFormField(
                 controller: cubit.phoneController,
                 type: TextInputType.phone,
-                label: profile.data.phone,
+                label: 'phone',
                 prefix: Icons.phone_android,
                 validator: (value)
                 {
