@@ -11,6 +11,7 @@ class MyFormField extends StatelessWidget {
   final IconData prefix;
   final Function()? onPressed;
   final IconData? suffix;
+  final ValueChanged<String>? onChanged;
   final bool isPassword;
 
   const MyFormField({
@@ -25,6 +26,7 @@ class MyFormField extends StatelessWidget {
     required this.validator,
     this.onPressed,
     this.isPassword = false,
+    this.onChanged
   }) : super(key: key);
 
   @override
@@ -34,6 +36,7 @@ class MyFormField extends StatelessWidget {
       keyboardType: type,
       validator: validator,
       obscureText: isPassword,
+      onChanged: onChanged,
       decoration: InputDecoration(
         fillColor: ColorManager.grey.withOpacity(.4),
         filled: true,
