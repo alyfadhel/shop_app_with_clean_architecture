@@ -135,10 +135,9 @@ class LoginScreen extends StatelessWidget {
                             text: AppStrings.login,
                             style: Theme.of(context)
                                 .textTheme
-                                .headlineMedium!
+                                .displayMedium!
                                 .copyWith(
                                   color: Colors.white,
-                                  fontSize: AppSize.s25,
                                 ),
                           ),
                           fallbackBuilder: (context) =>

@@ -21,37 +21,34 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => sl<ProfileCubit>()..getProfile(),
-      child: BlocConsumer<ProfileCubit, ProfileStates>(
-        listener: (context, state) {
-          if(state is GetUpdateProfileSuccessState){
-            if(state.model.status!){
-              showToast(
-                  text: state.model.message.toString(),
-                  state: ToastState.success,
-              );
-            }else{
-              showToast(
-                  text: state.model.message.toString(),
-                  state: ToastState.error);
-            }
+    return BlocConsumer<ProfileCubit, ProfileStates>(
+      listener: (context, state) {
+        if(state is GetUpdateProfileSuccessState){
+          if(state.model.status!){
+            showToast(
+                text: state.model.message.toString(),
+                state: ToastState.success,
+            );
+          }else{
+            showToast(
+                text: state.model.message.toString(),
+                state: ToastState.error);
           }
-        },
-        builder: (context, state) {
-          var cubit = ProfileCubit.get(context);
-          return Scaffold(
-            body: Conditional.single(
-              context: context,
-              conditionBuilder: (context) => cubit.profile != null,
-              widgetBuilder: (context) =>
-                  ShowProfileDetails(profile: cubit.profile!),
-              fallbackBuilder: (context) =>
-                  const Center(child: CircularProgressIndicator()),
-            ),
-          );
-        },
-      ),
+        }
+      },
+      builder: (context, state) {
+        var cubit = ProfileCubit.get(context);
+        return Scaffold(
+          body: Conditional.single(
+            context: context,
+            conditionBuilder: (context) => cubit.profile != null,
+            widgetBuilder: (context) =>
+                ShowProfileDetails(profile: cubit.profile!),
+            fallbackBuilder: (context) =>
+                const Center(child: CircularProgressIndicator()),
+          ),
+        );
+      },
     );
   }
 }
