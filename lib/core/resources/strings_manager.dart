@@ -21,6 +21,8 @@ class AppStrings {
   static const String categories =  'Categories';
   static const String newProducts =  'New Products';
   static const String profile =  'Profile';
+  static const String updateProfile =  'Update';
+  static const String logout =  'LogOut';
 
 
 }

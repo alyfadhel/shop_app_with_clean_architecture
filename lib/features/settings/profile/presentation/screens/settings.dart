@@ -23,13 +23,13 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileStates>(
       listener: (context, state) {
-        if(state is GetUpdateProfileSuccessState){
-          if(state.model.status!){
+        if (state is GetUpdateProfileSuccessState) {
+          if (state.model.status!) {
             showToast(
-                text: state.model.message.toString(),
-                state: ToastState.success,
+              text: state.model.message.toString(),
+              state: ToastState.success,
             );
-          }else{
+          } else {
             showToast(
                 text: state.model.message.toString(),
                 state: ToastState.error);
@@ -45,7 +45,7 @@ class SettingsScreen extends StatelessWidget {
             widgetBuilder: (context) =>
                 ShowProfileDetails(profile: cubit.profile!),
             fallbackBuilder: (context) =>
-                const Center(child: CircularProgressIndicator()),
+            const Center(child: CircularProgressIndicator()),
           ),
         );
       },
@@ -62,6 +62,7 @@ class ShowProfileDetails extends StatelessWidget {
     Key? key,
     required this.profile,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileStates>(
@@ -82,7 +83,8 @@ class ShowProfileDetails extends StatelessWidget {
                   children: [
                     Text(
                       AppStrings.profile,
-                      style: Theme.of(context)
+                      style: Theme
+                          .of(context)
                           .textTheme
                           .headlineMedium!
                           .copyWith(color: ColorManager.sBlack),
@@ -141,18 +143,19 @@ class ShowProfileDetails extends StatelessWidget {
                     MyButton(
                       onPressedTextButton: () {
                         sl<SharedPreferences>().remove('token').then(
-                          (value) {
+                              (value) {
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const LoginScreen(),
                                 ),
-                                (route) => false);
+                                    (route) => false);
                           },
                         );
                       },
-                      text: 'LogOut',
-                      style: Theme.of(context)
+                      text: AppStrings.logout,
+                      style: Theme
+                          .of(context)
                           .textTheme
                           .displayMedium!
                           .copyWith(color: ColorManager.sWhite),
@@ -161,18 +164,18 @@ class ShowProfileDetails extends StatelessWidget {
                       height: AppSize.s40,
                     ),
                     MyButton(
-                      onPressedTextButton: ()
-                      {
-                        if(formKey.currentState!.validate()){
+                      onPressedTextButton: () {
+                        if (formKey.currentState!.validate()) {
                           cubit.updateProfile(
-                            name: cubit.nameController.text ,
+                            name: cubit.nameController.text,
                             email: cubit.emailController.text,
                             phone: cubit.phoneController.text,
                           );
                         }
                       },
-                      text: 'Update',
-                      style: Theme.of(context)
+                      text: AppStrings.updateProfile,
+                      style: Theme
+                          .of(context)
                           .textTheme
                           .displayMedium!
                           .copyWith(color: ColorManager.sWhite),
