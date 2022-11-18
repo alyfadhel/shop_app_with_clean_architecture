@@ -35,6 +35,7 @@ import 'package:shop_app_with_clean_architecture/features/settings/profile/data/
 import 'package:shop_app_with_clean_architecture/features/settings/profile/data/repository/profile_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/settings/profile/domain/repository/base_profile_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/settings/profile/domain/usecase/get_profile_use_case.dart';
+import 'package:shop_app_with_clean_architecture/features/settings/profile/domain/usecase/get_update_profile_use_case.dart';
 import 'package:shop_app_with_clean_architecture/features/settings/profile/presentation/controller/cubit/cubit.dart';
 
 
@@ -107,7 +108,9 @@ class ServiceLocator {
             () => RegisterRemoteDataSource(sl()));
 ///////////////////////////////////////////////////////////////////
 
-    sl.registerFactory(() => ProfileCubit(sl()));
+    sl.registerFactory(() => ProfileCubit(sl(),sl()));
+
+    sl.registerFactory(() => GetUpdateProfileUseCase(sl()));
 
     sl.registerLazySingleton(() => GetProfileUseCase(sl()));
 

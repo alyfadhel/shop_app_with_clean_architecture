@@ -18,6 +18,19 @@ abstract class DioHelper {
     bool isMultipart = false,
   });
 
+  Future<dynamic> put({
+    String? base,
+    required String endPoint,
+    dynamic data,
+    dynamic query,
+    String? Authorization,
+    String? lang,
+    ProgressCallback? progressCallback,
+    CancelToken? cancelToken,
+    int? timeOut,
+    bool isMultipart = false,
+  });
+
   Future<dynamic> get({
     String? base,
     required String endPoint,
@@ -110,6 +123,45 @@ class DioHelperImpl implements DioHelper {
 
     return await request(
       call: () async => await dio.post(
+        endPoint,
+        data: data,
+        queryParameters: query,
+        onSendProgress: progressCallback,
+        cancelToken: cancelToken,
+      ),
+    );
+  }
+
+  @override
+  Future put({
+    String? base,
+    required String endPoint,
+    data, query,
+    String? Authorization,
+    String? lang, ProgressCallback?
+    progressCallback, CancelToken?
+    cancelToken, int? timeOut,
+    bool isMultipart = false,
+  }) async {
+    if (timeOut != null) {
+      dio.options.connectTimeout = timeOut;
+    }
+
+    dio.options.headers = {
+      if (isMultipart) 'Content-Type': 'multipart/form-data',
+      if (!isMultipart) 'Content-Type': 'application/json',
+      if (!isMultipart) 'Accept': 'application/json',
+      if (!isMultipart) 'lang': 'ar',
+      if (token != null) 'Authorization': token,
+    };
+
+    debugPrint('URL => ${dio.options.baseUrl + endPoint}');
+    debugPrint('Header => ${dio.options.headers.toString()}');
+    debugPrint('Body => $data');
+    debugPrint('Query => $query');
+
+    return await request(
+      call: () async => await dio.put(
         endPoint,
         data: data,
         queryParameters: query,

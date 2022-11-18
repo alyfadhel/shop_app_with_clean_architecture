@@ -3,6 +3,7 @@ import 'package:shop_app_with_clean_architecture/core/error/exception.dart';
 import 'package:shop_app_with_clean_architecture/core/error/failure.dart';
 import 'package:shop_app_with_clean_architecture/features/settings/profile/data/datasource/base_profile_remote_data_source.dart';
 import 'package:shop_app_with_clean_architecture/features/settings/profile/domain/entities/profile.dart';
+import 'package:shop_app_with_clean_architecture/features/settings/profile/domain/entities/update_profile.dart';
 import 'package:shop_app_with_clean_architecture/features/settings/profile/domain/repository/base_profile_repository.dart';
 
 class ProfileRepository extends BaseProfileRepository
@@ -13,6 +14,17 @@ class ProfileRepository extends BaseProfileRepository
   @override
   Future<Either<Failure, Profile>> getProfile() async{
     final result = await baseProfileRemoteDataSource.getProfile();
+
+    try{
+      return Right(result);
+    }on ServerException catch(failure){
+      return Left(ServerFailure(failure.statusErrorMessageModel.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UpdateProfile>> getUpdateProfile(UpdateProfileParameters parameters)async {
+    final result = await baseProfileRemoteDataSource.getUpdateProfile(parameters);
 
     try{
       return Right(result);
