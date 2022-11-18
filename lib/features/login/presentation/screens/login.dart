@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app_with_clean_architecture/core/layout/home_layout.dart';
+import 'package:shop_app_with_clean_architecture/core/network/end-points.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/color_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/strings_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/values_manager.dart';
@@ -37,6 +38,7 @@ class LoginScreen extends StatelessWidget {
                 sl<SharedPreferences>()
                     .setString('token', state.login.data!.token!)
                     .then((value) {
+                  token = state.login.data!.token!;
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(

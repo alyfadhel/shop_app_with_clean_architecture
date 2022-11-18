@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 
 class Profile extends Equatable
 {
-  final bool status;
-  final ProfileData data;
+  final bool? status;
+  final ProfileData? data;
 
 
  const Profile({

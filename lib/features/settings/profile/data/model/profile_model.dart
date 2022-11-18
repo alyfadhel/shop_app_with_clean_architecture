@@ -12,7 +12,7 @@ class ProfileModel extends Profile
  {
    return ProfileModel(
        status: json['status'],
-       data: ProfileDataModel.fromJson(json['data']),
+       data: (json['data']) != null ? ProfileDataModel.fromJson(json['data']) : null,
    );
  }
 
