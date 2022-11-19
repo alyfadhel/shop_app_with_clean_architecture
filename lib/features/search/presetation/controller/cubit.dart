@@ -24,14 +24,13 @@ class SearchCubit extends Cubit<SearchStates>
     final result = await getSearchUseCase(
       SearchParameters(text: text)
     );
-
     result.fold(
-            (l) => emit(GetSearchErrorState(l.message)),
+            (l) => emit(GetSearchErrorState(l.message),
+            ),
             (r) {
               model = r;
-              searchController.clear();
               emit(GetSearchSuccessState(r));
-            } ,
+            },
     );
   }
 
