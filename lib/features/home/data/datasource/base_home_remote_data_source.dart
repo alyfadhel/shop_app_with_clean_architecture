@@ -16,7 +16,7 @@ class HomeRemoteDataSource extends BaseHomeRemoteDataSource
   Future<HomeModel> getHome() async{
     final response = await dioHelper.get(
         endPoint: homeEndPoint,
-      Authorization: token,
+        Authorization: token,
     );
     return HomeModel.fromJson(response);
   }

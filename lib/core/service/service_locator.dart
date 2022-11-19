@@ -11,6 +11,10 @@ import 'package:shop_app_with_clean_architecture/features/categories_details/dat
 import 'package:shop_app_with_clean_architecture/features/categories_details/domain/repository/base_categories_details_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/categories_details/domain/usecase/get_categories_details_use_case.dart';
 import 'package:shop_app_with_clean_architecture/features/categories_details/presentation/controller/cubit/cubit.dart';
+import 'package:shop_app_with_clean_architecture/features/chage_favorites/data/datasource/base_change_favorites_remote_data_source.dart';
+import 'package:shop_app_with_clean_architecture/features/chage_favorites/data/repository/change_favorites.dart';
+import 'package:shop_app_with_clean_architecture/features/chage_favorites/domain/repository/base_change_favorites_repository.dart';
+import 'package:shop_app_with_clean_architecture/features/chage_favorites/domain/usecase/get_change_favorites.dart';
 import 'package:shop_app_with_clean_architecture/features/home/data/datasource/base_home_remote_data_source.dart';
 import 'package:shop_app_with_clean_architecture/features/home/data/repository/home_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/home/domain/repository/base_home_repository.dart';
@@ -49,6 +53,16 @@ final sl = GetIt.instance;
 
 class ServiceLocator {
   Future<void> init() async {
+
+    sl.registerLazySingleton(() => GetChangeFavoritesUseCase(sl()));
+
+    sl.registerLazySingleton<BaseChangeFavoritesRepository>(
+            () => ChangeFavoritesRepository(sl()));
+
+    sl.registerLazySingleton<BaseChangeFavoritesRemoteDataSource>(
+            () => ChangeFavoritesRemoteDataSource(sl()));
+
+/////////////////////////////////////////////////////////////////////
 
     sl.registerFactory(() => SearchCubit(sl()));
 
@@ -93,7 +107,7 @@ class ServiceLocator {
     sl.registerLazySingleton<BaseProductsDetailsRemoteDataSource>(
             () => ProductsDetailsRemoteDataSource(sl()));
 ////////////////////////////////////////////////////////////////////
-    sl.registerFactory(() => HomeCubit(sl()));
+    sl.registerFactory(() => HomeCubit(sl(),sl()));
 
     sl.registerLazySingleton(() => GetHomeUseCase(sl()));
 

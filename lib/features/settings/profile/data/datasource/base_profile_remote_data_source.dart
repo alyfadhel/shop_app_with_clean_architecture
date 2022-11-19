@@ -20,7 +20,7 @@ class ProfileRemoteDataSource extends BaseProfileRemoteDataSource {
   Future<ProfileModel> getProfile() async {
     final response = await dioHelper.get(
       endPoint: profileEndPoint,
-      Authorization: token,
+     // Authorization: token,
     );
     return ProfileModel.fromJson(response);
   }
@@ -35,7 +35,7 @@ class ProfileRemoteDataSource extends BaseProfileRemoteDataSource {
         'email': parameters.email,
         'phone': parameters.phone,
       },
-      Authorization: token,
+     // Authorization: token,
     );
 
     return UpdateProfileModel.fromJson(response);

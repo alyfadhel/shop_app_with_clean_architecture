@@ -17,7 +17,7 @@ class CategoriesDetailsRemoteDataSource extends BaseCategoriesDetailsRemoteDataS
   Future<List<CategoriesDataDetailsModel>> getCategoriesDetails(CategoriesDetailsParameters parameters)async {
     final response =  await dioHelper.get(
         endPoint: categoriesDetailsEndPoint(parameters.id),
-      Authorization: token,
+        Authorization: token,
     );
     return List<CategoriesDataDetailsModel>.from((response['data']['data'] as List)
     .map((e) => CategoriesDataDetailsModel.fromJson(e)));

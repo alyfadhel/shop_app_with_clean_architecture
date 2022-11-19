@@ -17,7 +17,7 @@ class ProductsDetailsRemoteDataSource extends BaseProductsDetailsRemoteDataSourc
   Future<ProductsDetailsModel> getProductsDetails(ProductsDetailsParameters parameters) async{
     final response = await dioHelper.get(
         endPoint: productsDetailsEndPoint(parameters.id),
-      Authorization: token,
+        Authorization: token,
     );
     return ProductsDetailsModel.fromJson(response);
   }
