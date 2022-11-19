@@ -49,6 +49,8 @@ class HomeCubit extends Cubit<HomeStates>
 
   void changeFavorites(int productId)async
   {
+    favorites[productId] = !favorites[productId]!;
+    emit(ChangeFavoritesState());
     final result = await getChangeFavoritesUseCase(ChangeFavoritesParameters(productId: productId));
    result.fold(
            (l) {
@@ -65,8 +67,7 @@ class HomeCubit extends Cubit<HomeStates>
              emit(GetChangeFavoritesSuccessState(r));
            },
    );
-    favorites[productId] = !favorites[productId]!;
-    emit(ChangeFavoritesState());
+
 
   }
 

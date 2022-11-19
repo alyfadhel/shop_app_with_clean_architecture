@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
-import 'package:shop_app_with_clean_architecture/core/resources/values_manager.dart';
 import 'package:shop_app_with_clean_architecture/features/favorites/domain/entities/favorites.dart';
+import 'package:shop_app_with_clean_architecture/features/home/domain/entities/home.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/state.dart';
 
@@ -113,12 +112,12 @@ class FavoritesDetails extends StatelessWidget {
                           const Spacer(),
                           IconButton(
                             onPressed: () {
-                              cubit.changeFavorites(model.id);
+                              cubit.changeFavorites(model.product.id);
                             },
                             icon: CircleAvatar(
                               radius: 15.0,
                               backgroundColor:
-                              cubit.favorites[model.id] ==
+                              cubit.favorites[model.product.id] ==
                                   true
                                   ? Colors.blue
                                   : Colors.grey,
