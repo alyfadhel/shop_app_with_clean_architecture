@@ -21,6 +21,7 @@ class SearchCubit extends Cubit<SearchStates>
 
   void getSearch(String text)async
   {
+    emit(GetSearchLoadingState());
     final result = await getSearchUseCase(
       SearchParameters(text: text)
     );
