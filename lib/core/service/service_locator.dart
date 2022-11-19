@@ -31,6 +31,11 @@ import 'package:shop_app_with_clean_architecture/features/register/data/reposito
 import 'package:shop_app_with_clean_architecture/features/register/domain/repository/base_register_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/register/domain/usecase/get_register_user_use_case.dart';
 import 'package:shop_app_with_clean_architecture/features/register/presentation/controller/cubit/cubit.dart';
+import 'package:shop_app_with_clean_architecture/features/search/data/datasource/base_search_remote_data_source.dart';
+import 'package:shop_app_with_clean_architecture/features/search/data/repository/search_repository.dart';
+import 'package:shop_app_with_clean_architecture/features/search/domain/repository/base_search_repository.dart';
+import 'package:shop_app_with_clean_architecture/features/search/domain/usecase/get_search_use_case.dart';
+import 'package:shop_app_with_clean_architecture/features/search/presetation/controller/cubit.dart';
 import 'package:shop_app_with_clean_architecture/features/settings/profile/data/datasource/base_profile_remote_data_source.dart';
 import 'package:shop_app_with_clean_architecture/features/settings/profile/data/repository/profile_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/settings/profile/domain/repository/base_profile_repository.dart';
@@ -44,6 +49,17 @@ final sl = GetIt.instance;
 
 class ServiceLocator {
   Future<void> init() async {
+
+    sl.registerFactory(() => SearchCubit(sl()));
+
+    sl.registerLazySingleton(() => GetSearchUseCase(sl()));
+
+    sl.registerLazySingleton<BaseSearchRepository>(
+            () => SearchRepository(sl()));
+
+    sl.registerLazySingleton<BaseSearchRemoteDataSource>(
+            () => SearchRemoteDataSource(sl()));
+    ///////////////////////////////////////////////////////////////
 
     sl.registerFactory(() => CategoriesDetailsCubit(sl()));
 

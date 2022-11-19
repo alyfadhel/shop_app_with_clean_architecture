@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_with_clean_architecture/features/search/domain/entities/search.dart';
 import 'package:shop_app_with_clean_architecture/features/search/domain/repository/base_search_repository.dart';
@@ -15,6 +16,7 @@ class SearchCubit extends Cubit<SearchStates>
 
   static SearchCubit get(context)=> BlocProvider.of(context);
 
+  var searchController = TextEditingController();
   List<SearchData>model = [];
 
   void getSearch(String text)async
@@ -27,6 +29,7 @@ class SearchCubit extends Cubit<SearchStates>
             (l) => emit(GetSearchErrorState(l.message)),
             (r) {
               model = r;
+              searchController.clear();
               emit(GetSearchSuccessState(r));
             } ,
     );
