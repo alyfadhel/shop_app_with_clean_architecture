@@ -80,22 +80,6 @@ class ShowCategoriesDetails extends StatelessWidget {
                         decoration: TextDecoration.lineThrough,
                       ),
                     ),
-                  const Spacer(),
-                  IconButton(
-                    onPressed: ()
-                    {
-                      // ShopCubit.get(context).changeFavorites(model.id!);
-                    },
-                    icon:  const CircleAvatar(
-                      radius: 15.0,
-                      // backgroundColor: ShopCubit.get(context).favorites[model.id] == true ? Colors.blue :  Colors.grey,
-                      child: Icon(
-                        Icons.favorite_border,
-                        size: 14.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ],
