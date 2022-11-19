@@ -4,6 +4,8 @@ import 'package:shop_app_with_clean_architecture/core/usecase/base_usecase.dart'
 import 'package:shop_app_with_clean_architecture/features/chage_favorites/domain/entities/change_favorites.dart';
 import 'package:shop_app_with_clean_architecture/features/chage_favorites/domain/repository/base_change_favorites_repository.dart';
 import 'package:shop_app_with_clean_architecture/features/chage_favorites/domain/usecase/get_change_favorites.dart';
+import 'package:shop_app_with_clean_architecture/features/favorites/domain/entities/favorites.dart';
+import 'package:shop_app_with_clean_architecture/features/favorites/domain/usecase/get_favorites_use_case.dart';
 import 'package:shop_app_with_clean_architecture/features/home/domain/entities/home.dart';
 import 'package:shop_app_with_clean_architecture/features/home/domain/usecase/base_home_use_case.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/controller/cubit/state.dart';
@@ -12,9 +14,11 @@ class HomeCubit extends Cubit<HomeStates>
 {
   final GetHomeUseCase baseHomeUseCase;
   final GetChangeFavoritesUseCase getChangeFavoritesUseCase;
+  final GetFavoritesUseCase getFavoritesUseCase;
   HomeCubit(
       this.baseHomeUseCase,
       this.getChangeFavoritesUseCase,
+      this.getFavoritesUseCase,
       ): super(InitialHomeState());
 
   static HomeCubit get(context)=>BlocProvider.of(context);
@@ -45,8 +49,6 @@ class HomeCubit extends Cubit<HomeStates>
 
   void changeFavorites(int productId)async
   {
-    favorites[productId] = !favorites[productId]!;
-    emit(ChangeFavoritesState());
     final result = await getChangeFavoritesUseCase(ChangeFavoritesParameters(productId: productId));
    result.fold(
            (l) {
@@ -57,12 +59,32 @@ class HomeCubit extends Cubit<HomeStates>
              model = r;
              if(!model!.status){
                favorites[productId] = !favorites[productId]!;
-               emit(GetChangeFavoritesSuccessState(r));
+             }else{
+               getFavorites();
              }
-
+             emit(GetChangeFavoritesSuccessState(r));
            },
    );
+    favorites[productId] = !favorites[productId]!;
+    emit(ChangeFavoritesState());
 
+  }
+
+
+  List<FavoritesData>favoritesData = [];
+
+  void getFavorites()async
+  {
+    emit(GetFavoritesLoadingState());
+
+    final result = await getFavoritesUseCase(const NoParameters());
+
+    result.fold(
+            (l) => emit(GetFavoritesErrorState(l.message)),
+            (r) {
+              favoritesData = r;
+              emit(GetFavoritesSuccessState(r));
+            });
   }
 
 }
