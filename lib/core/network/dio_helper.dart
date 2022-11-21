@@ -11,7 +11,7 @@ abstract class DioHelper {
     dynamic data,
     dynamic query,
     String? Authorization,
-    String? lang,
+    String lang = 'ar',
     ProgressCallback? progressCallback,
     CancelToken? cancelToken,
     int? timeOut,
@@ -24,7 +24,7 @@ abstract class DioHelper {
     dynamic data,
     dynamic query,
     String? Authorization,
-    String? lang,
+    String lang = 'ar',
     ProgressCallback? progressCallback,
     CancelToken? cancelToken,
     int? timeOut,
@@ -37,7 +37,7 @@ abstract class DioHelper {
     dynamic data,
     dynamic query,
     String? Authorization,
-    String? lang,
+    String lang = 'ar',
     CancelToken? cancelToken,
     int? timeOut,
     bool isMultipart = false,
@@ -60,7 +60,7 @@ class DioHelperImpl implements DioHelper {
     data,
     query,
     String? Authorization,
-    String? lang,
+    String lang = 'ar',
     CancelToken? cancelToken,
     int? timeOut,
     bool isMultipart = false,
@@ -73,7 +73,7 @@ class DioHelperImpl implements DioHelper {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
-      if (!isMultipart) 'lang': 'en',
+      if (!isMultipart) 'lang': lang,
       if (token != null) 'Authorization': token,
     };
 
@@ -112,7 +112,7 @@ class DioHelperImpl implements DioHelper {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
-      if (!isMultipart) 'lang': 'en',
+      if (!isMultipart) 'lang': lang,
       if (token != null) 'Authorization': token,
     };
 
@@ -138,7 +138,7 @@ class DioHelperImpl implements DioHelper {
     required String endPoint,
     data, query,
     String? Authorization,
-    String? lang,
+    String lang = 'ar',
     ProgressCallback?progressCallback,
     CancelToken?cancelToken,
     int? timeOut,
@@ -152,7 +152,7 @@ class DioHelperImpl implements DioHelper {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
-      if (!isMultipart) 'lang': 'en',
+      if (!isMultipart) 'lang': lang,
       if (token != null) 'Authorization': token,
     };
 

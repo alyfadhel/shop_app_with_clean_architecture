@@ -12,7 +12,7 @@ class RegisterModel extends Register
    return RegisterModel(
        status: json['status'],
        message: json['message'],
-       data: RegisterDataModel.fromJson(json['data']),
+       data: json['data']!=null ? RegisterDataModel.fromJson(json['data']): null,
    );
  }
 

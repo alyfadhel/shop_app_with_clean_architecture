@@ -4,7 +4,7 @@ class Register extends Equatable
 {
   final bool status;
   final String message;
-  final RegisterData data;
+  final RegisterData? data;
 
  const Register({
   required this.status,

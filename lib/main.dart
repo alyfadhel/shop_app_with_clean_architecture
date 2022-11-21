@@ -20,7 +20,6 @@ void main() async {
   await ServiceLocator().init();
   bool? onBoarding = sl<SharedPreferences>().getBool('onBoarding');
   bool? isDark = sl<SharedPreferences>().getBool('isDark');
-  print('Darrrrrrrrrrrrrrk: $isDark');
   token = sl<SharedPreferences>().getString('token');
   Bloc.observer = MyBlocObserver();
 

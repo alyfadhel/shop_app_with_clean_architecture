@@ -30,7 +30,7 @@ class RegisterScreen extends StatelessWidget {
                 state: ToastState.success,
               );
               sl<SharedPreferences>()
-                  .setString('token', state.register.data.token)
+                  .setString('token', state.register.data!.token)
                   .then((value) {
                 Navigator.pushReplacement(
                   context,
