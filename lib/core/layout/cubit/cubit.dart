@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app_with_clean_architecture/core/layout/cubit/states.dart';
+import 'package:shop_app_with_clean_architecture/core/service/service_locator.dart';
 import 'package:shop_app_with_clean_architecture/features/categories/presentation/screens/categories.dart';
 import 'package:shop_app_with_clean_architecture/features/favorites/presentation/screens/favorites.dart';
 import 'package:shop_app_with_clean_architecture/features/home/presentation/screens/products_screen.dart';
@@ -54,5 +56,7 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarStates>
     currentIndex = index;
     emit(ChangeBottomNav());
   }
+
+
 
 }

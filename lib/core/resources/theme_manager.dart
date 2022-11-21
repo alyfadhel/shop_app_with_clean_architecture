@@ -160,7 +160,7 @@ ThemeData getApplicationDarkTheme() {
     appBarTheme: AppBarTheme(
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.light,
       ),
       centerTitle: true,
       backgroundColor: ColorManager.sBlack,
@@ -237,20 +237,24 @@ ThemeData getApplicationDarkTheme() {
         fontSize: FontSize.s18,
       ),
       displaySmall: getRegularStyle(
-        color: ColorManager.gGrey,
+        color: ColorManager.sWhite,
         fontSize: FontSize.s14,
       ),
       bodyMedium: getRegularStyle(
-        color: ColorManager.bGreen,
+        color: ColorManager.sWhite,
         fontSize: FontSize.s18,
       ),
       bodySmall: getRegularStyle(
-        color: ColorManager.gGrey,
+        color: ColorManager.sWhite,
         fontSize: FontSize.s16,
+      ),
+      headlineLarge: getRegularStyle(
+        color: ColorManager.sWhite,
+        fontSize: FontSize.s30,
       ),
       headlineSmall: getRegularStyle(
         color: ColorManager.sWhite,
-        fontSize: FontSize.s16,
+        fontSize: FontSize.s25,
       ),
     ),
     // // input decoration theme (text form field)

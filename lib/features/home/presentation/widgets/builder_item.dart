@@ -52,11 +52,7 @@ class BuilderItem extends StatelessWidget {
               style: Theme
                   .of(context)
                   .textTheme
-                  .headlineMedium!
-                  .copyWith(
-                  color: ColorManager.sBlack,
-                  fontSize: AppSize.s30
-              ),
+                  .headlineSmall,
             ),
           ),
           const SizedBox(
@@ -70,11 +66,7 @@ class BuilderItem extends StatelessWidget {
               style: Theme
                   .of(context)
                   .textTheme
-                  .headlineMedium!
-                  .copyWith(
-                  color: ColorManager.sBlack,
-                  fontSize: AppSize.s30
-              ),
+                  .headlineSmall,
             ),
           ),
           const SizedBox(

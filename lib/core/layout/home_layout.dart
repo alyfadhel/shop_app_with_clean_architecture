@@ -5,6 +5,7 @@ import 'package:shop_app_with_clean_architecture/core/layout/cubit/states.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/strings_manager.dart';
 import 'package:shop_app_with_clean_architecture/core/resources/values_manager.dart';
 import 'package:shop_app_with_clean_architecture/features/search/presetation/screens/search.dart';
+import 'package:shop_app_with_clean_architecture/features/theme/cubit/cubit.dart';
 
 class HomeLayout extends StatelessWidget {
   const HomeLayout({Key? key}) : super(key: key);
@@ -37,6 +38,12 @@ class HomeLayout extends StatelessWidget {
                   icon: const Icon(
                     Icons.search,
                   ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    ThemeModeCubit.get(context).changeThemeMode();
+                  },
+                  icon: const Icon(Icons.brightness_4_outlined),
                 ),
               ],
             ),

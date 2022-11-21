@@ -50,6 +50,7 @@ import 'package:shop_app_with_clean_architecture/features/settings/profile/domai
 import 'package:shop_app_with_clean_architecture/features/settings/profile/domain/usecase/get_profile_use_case.dart';
 import 'package:shop_app_with_clean_architecture/features/settings/profile/domain/usecase/get_update_profile_use_case.dart';
 import 'package:shop_app_with_clean_architecture/features/settings/profile/presentation/controller/cubit/cubit.dart';
+import 'package:shop_app_with_clean_architecture/features/theme/cubit/cubit.dart';
 
 
 
@@ -57,6 +58,10 @@ final sl = GetIt.instance;
 
 class ServiceLocator {
   Future<void> init() async {
+
+    sl.registerFactory(() => ThemeModeCubit());
+
+/////////////////////////////////////////////////////////////////////
 
     sl.registerLazySingleton(() => GetFavoritesUseCase(sl()));
 
