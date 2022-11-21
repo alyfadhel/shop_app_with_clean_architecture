@@ -25,15 +25,5 @@ class ThemeModeCubit extends Cubit<ThemeModeStates>
     }
   }
 
-  bool isEnglish = false;
-
-  void getLang()async
-  {
-    isEnglish = !isEnglish;
-    sl<SharedPreferences>().setBool('isEnglish', isEnglish).then((value)
-    {
-      emit(ChangeLangState());
-    });
-  }
 
 }

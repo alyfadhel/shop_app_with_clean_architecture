@@ -4,5 +4,3 @@ class InitialThemeModeState extends ThemeModeStates{}
 
 class ChangeThemeModeState extends ThemeModeStates{}
 
-
-class ChangeLangState extends ThemeModeStates{}
