@@ -73,7 +73,7 @@ class DioHelperImpl implements DioHelper {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
-      if (!isMultipart) 'lang': 'ar',
+      if (!isMultipart) 'lang': 'en',
       if (token != null) 'Authorization': token,
     };
 
@@ -112,7 +112,7 @@ class DioHelperImpl implements DioHelper {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
-      if (!isMultipart) 'lang': 'ar',
+      if (!isMultipart) 'lang': 'en',
       if (token != null) 'Authorization': token,
     };
 
@@ -138,9 +138,10 @@ class DioHelperImpl implements DioHelper {
     required String endPoint,
     data, query,
     String? Authorization,
-    String? lang, ProgressCallback?
-    progressCallback, CancelToken?
-    cancelToken, int? timeOut,
+    String? lang,
+    ProgressCallback?progressCallback,
+    CancelToken?cancelToken,
+    int? timeOut,
     bool isMultipart = false,
   }) async {
     if (timeOut != null) {
@@ -151,7 +152,7 @@ class DioHelperImpl implements DioHelper {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
-      if (!isMultipart) 'lang': 'ar',
+      if (!isMultipart) 'lang': 'en',
       if (token != null) 'Authorization': token,
     };
 
